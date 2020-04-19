@@ -87,3 +87,18 @@ if(NOT catch2_POPULATED)
 endif()
 
 # Add more CMake libraries here ...
+# Testing library. Header-only.
+FetchContent_Declare(
+        SoLoud
+        GIT_REPOSITORY https://github.com/jarikomppa/soloud.git
+        GIT_TAG        RELEASE_20200207
+)
+
+# Adds catch2 library. This is a header only library.
+FetchContent_GetProperties(SoLoud)
+if(NOT SoLoud_POPULATED)
+    FetchContent_Populate(SoLoud)
+    # This is overkill since we only need a single file. Though it is a clean solution.
+    add_library(SoLoud INTERFACE)
+    target_include_directories(SoLoud INTERFACE ${SoLoud_SOURCE_DIR}/single_include)
+endif()
