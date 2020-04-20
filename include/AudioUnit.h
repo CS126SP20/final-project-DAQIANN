@@ -22,10 +22,10 @@
 
 #pragma once
 
-#include "GenericUnit.h"
-#include "GenericUnitSubclasses.h"
-#include "AudioUnitTap.h"
-#include "AudioUnitMidi.h"
+#include <src/GenericUnit.h>
+#include <src/GenericUnitSubclasses.h>
+#include <src/AudioUnitTap.h>
+#include <src/AudioUnitMidi.h>
 
 namespace cinder {
 	namespace au = audiounit;

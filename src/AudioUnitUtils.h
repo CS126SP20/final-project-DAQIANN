@@ -26,6 +26,7 @@
 #include "cinder/Filesystem.h"
 #include <string>
 #include <sstream>
+#include <iostream>
 
 #define CINDER_AUDIOUNIT_LOG_ERRORS
 
