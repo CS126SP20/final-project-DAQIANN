@@ -27,6 +27,8 @@ class MyApp : public cinder::app::App {
  private:
   mylibrary::LeaderBoard leaderboard_;
   std::vector<mylibrary::Player> top_players_;
+  const std::string player_name_;
+  size_t player_score_;
 };
 
 }  // namespace myapp

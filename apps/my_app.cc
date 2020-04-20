@@ -25,17 +25,26 @@ using std::string;
 const char kDbPath[] = "finalgame.db";
 
 MyApp::MyApp()
-: leaderboard_{cinder::app::getAssetPath(kDbPath).string()}{ }
+: leaderboard_{cinder::app::getAssetPath(kDbPath).string()},
+  player_name_{"test"},
+  player_score_{0}
+  { }
 
 void MyApp::setup() {
-  try {
-    leaderboard_.AddScoreToLeaderBoard({"test", 0});
-  } catch (sqlite::errors::error exception) {
-    std::cout << exception.what() << std::endl;
-  }
+
 }
 
-void MyApp::update() { }
+void MyApp::update() {
+  if (top_players_.empty()) {
+    try {
+      leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_});
+    } catch (sqlite::errors::error exception) {
+      std::cout << exception.what() << std::endl;
+    }
+    top_players_.push_back({player_name_, player_score_});
+  }
+
+}
 
 void MyApp::draw() { }
 
