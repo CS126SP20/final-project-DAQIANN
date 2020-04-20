@@ -19,12 +19,18 @@ ci_make_library(
         CINDER_PATH  ${CINDER_PATH}
         SOURCES      ${SOURCE_LIST}
         INCLUDES     "${FinalProject_SOURCE_DIR}/include"
-        LIBRARIES
+        LIBRARIES    sqlite-modern-cpp sqlite3
         BLOCKS
 )
 
+target_include_directories(mylibrary PUBLIC ../include)
+
+#target_link_libraries(mylibrary PRIVATE sqlite-modern-cpp sqlite3)
+
 # All users of this library will need at least C++14
+
 target_compile_features(mylibrary PUBLIC cxx_std_14)
+
 
 set_property(TARGET mylibrary PROPERTY
         MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
