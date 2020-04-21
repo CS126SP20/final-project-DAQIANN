@@ -16,10 +16,10 @@ class SpriteLocation {
   bool operator()(const SpriteLocation& lhs, const SpriteLocation& rhs) const;
   bool operator==(const SpriteLocation& rhs) const;
   bool operator!=(const SpriteLocation& rhs) const;
-  bool operator<(const Location& rhs) const;
-  bool operator<=(const Location& rhs) const;
-  bool operator>(const Location& rhs) const;
-  bool operator>=(const Location& rhs) const;
+  bool operator<(const SpriteLocation& rhs) const;
+  bool operator<=(const SpriteLocation& rhs) const;
+  bool operator>(const SpriteLocation& rhs) const;
+  bool operator>=(const SpriteLocation& rhs) const;
 
   SpriteLocation operator+(const SpriteLocation& rhs) const;
   SpriteLocation operator%(const SpriteLocation& rhs) const;

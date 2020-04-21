@@ -35,14 +35,10 @@ void MyApp::setup() {
 }
 
 void MyApp::update() {
-  if (top_players_.empty()) {
-    try {
-      leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_});
-    } catch (sqlite::errors::error exception) {
-      std::cout << exception.what() << std::endl;
-    }
-    top_players_.push_back({player_name_, player_score_});
-  }
+//  if (top_players_.empty()) {
+//    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
+//    top_players_.push_back({player_name_, player_score_, NULL});
+//  }
 
 }
 

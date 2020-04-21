@@ -8,9 +8,10 @@
 
 namespace mylibrary {
 struct Player {
-  Player(const std::string& name, size_t score) : name(name), score(score) {}
+  Player(const std::string& name, size_t score, size_t time) : name(name), score(score), time(time) {}
   std::string name;
   size_t score;
+  size_t time;
 };
 }
 

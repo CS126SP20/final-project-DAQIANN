@@ -17,7 +17,7 @@ namespace mylibrary {
   public:
    explicit LeaderBoard(const std::string& db_path);
    void AddScoreToLeaderBoard(const Player&);
-
+   void AddTimeToLeaderBoard(const Player&);
   private:
    sqlite::database db_;
  };

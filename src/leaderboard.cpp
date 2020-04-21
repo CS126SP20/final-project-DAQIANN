@@ -20,4 +20,8 @@ void LeaderBoard::AddScoreToLeaderBoard(const Player& player) {
   db_ << u"insert into leaderboard (name, score) values (?, ?);" << player.name
       << player.score;
 }
+
+void LeaderBoard::AddTimeToLeaderBoard(const Player& player) {
+  db_ << u"insert into leaderboard (time) values ?;" << player.time;
+}
 }

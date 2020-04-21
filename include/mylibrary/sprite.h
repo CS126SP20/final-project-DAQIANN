@@ -10,7 +10,7 @@
 namespace mylibrary {
 class Sprite {
  public:
-  explicit SpriteLocation(const SpriteLocation&);
+  explicit Sprite(const SpriteLocation&);
 
   Sprite(const Sprite&);
   Sprite(Sprite&&) noexcept;
