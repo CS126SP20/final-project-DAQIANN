@@ -21,7 +21,7 @@ using cinder::app::KeyEvent;
 using cinder::Color;
 using cinder::ColorA;
 using cinder::Rectf;
-using mylibrary::SpriteLocation;
+//using mylibrary::SpriteLocation;
 //using cinder::TextBox;
 using cinder::app::KeyEvent;
 using std::chrono::duration_cast;
@@ -42,10 +42,10 @@ void MyApp::setup() {
 }
 
 void MyApp::update() {
-//  if (top_players_.empty()) {
-//    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
-//    top_players_.push_back({player_name_, player_score_, NULL});
-//  }
+  if (top_players_.empty()) {
+    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
+    top_players_.push_back({player_name_, player_score_, NULL});
+  }
 
 }
 
