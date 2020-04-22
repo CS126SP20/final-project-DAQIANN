@@ -13,7 +13,7 @@ ci_make_app(
     CINDER_PATH ${CINDER_PATH}
     SOURCES     ${SOURCE_LIST}
     LIBRARIES   mylibrary
-    BLOCKS      ${CINDER_PATH}/blocks/suBox2D
+    BLOCKS      #${CINDER_PATH}/blocks/suBox2D
 )
 
 target_compile_features(cinder-myapp PRIVATE cxx_std_14)

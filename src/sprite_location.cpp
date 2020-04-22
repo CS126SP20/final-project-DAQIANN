@@ -1,7 +1,7 @@
 //
 // Created by Daniel Qian on 4/20/20.
 //
-#include <mylibrary/spritelocation.h>
+#include <mylibrary/sprite_location.h>
 
 namespace mylibrary {
 
@@ -67,6 +67,11 @@ int SpriteLocation::Row() const {
 
 int SpriteLocation::Col() const {
   return col_;
+}
+
+std::ostream& operator<<(std::ostream& os, const SpriteLocation& sprite_location) {
+  os << "{row=" << sprite_location.Row() << ", col=" << sprite_location.Col() << "}";
+  return os;
 }
 
 } // namespace mylibrary

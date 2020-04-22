@@ -20,7 +20,7 @@ ci_make_library(
         SOURCES      ${SOURCE_LIST}
         INCLUDES     "${FinalProject_SOURCE_DIR}/include"
         LIBRARIES    sqlite-modern-cpp sqlite3
-        BLOCKS       ${CINDER_PATH}/blocks/suBox2D
+        BLOCKS       #${CINDER_PATH}/blocks/suBox2D
 )
 
 target_include_directories(mylibrary PUBLIC ../include)

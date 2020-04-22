@@ -2,6 +2,12 @@
 
 #include "my_app.h"
 #include <cinder/app/App.h>
+#include <cinder/Font.h>
+#include <cinder/Text.h>
+#include <cinder/Vector.h>
+#include <cinder/gl/draw.h>
+#include <cinder/gl/gl.h>
+#include <cinder/audio/audio.h>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -15,6 +21,7 @@ using cinder::app::KeyEvent;
 using cinder::Color;
 using cinder::ColorA;
 using cinder::Rectf;
+using mylibrary::SpriteLocation;
 //using cinder::TextBox;
 using cinder::app::KeyEvent;
 using std::chrono::duration_cast;

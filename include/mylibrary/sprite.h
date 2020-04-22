@@ -5,7 +5,7 @@
 #ifndef FINALPROJECT_SPRITE_H
 #define FINALPROJECT_SPRITE_H
 
-#include <mylibrary/spritelocation.h>
+#include <mylibrary/sprite_location.h>
 
 namespace mylibrary {
 class Sprite {
