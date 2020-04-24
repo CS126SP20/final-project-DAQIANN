@@ -13,3 +13,7 @@
 ####4/21/2020
    * Wrote test for sprite_location
    * Created the game_engine file and direction file to get direction working
+   
+####4/23/2020
+   * Continued writing the game_engine header file.
+   * Created the game_engine cpp file.
