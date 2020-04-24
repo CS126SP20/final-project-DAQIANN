@@ -16,4 +16,5 @@
    
 ####4/23/2020
    * Continued writing the game_engine header file.
-   * Created the game_engine cpp file.
+   * Created the game_engine cpp file and began filling it in.
+   * Created player_sprite header and cpp file.

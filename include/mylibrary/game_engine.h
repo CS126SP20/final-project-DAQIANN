@@ -18,6 +18,8 @@ class GameEngine {
 
   void Reset();
 
+  void Step();
+
   void SetDirection(Direction);
   //size_t GetScore const;
   Sprite GetSprite() const;

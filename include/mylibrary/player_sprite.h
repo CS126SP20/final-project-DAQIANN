@@ -1,0 +1,8 @@
+//
+// Created by Daniel Qian on 4/23/20.
+//
+
+#ifndef FINALPROJECT_PLAYER_SPRITE_H
+#define FINALPROJECT_PLAYER_SPRITE_H
+
+#endif  // FINALPROJECT_PLAYER_SPRITE_H
