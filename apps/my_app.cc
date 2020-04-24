@@ -1,6 +1,7 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
 #include "my_app.h"
+#include <mylibrary/sprite_location.h>
 #include <cinder/app/App.h>
 #include <cinder/Font.h>
 #include <cinder/Text.h>
@@ -8,6 +9,8 @@
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
 #include <cinder/audio/audio.h>
+#include "cinder/ImageIo.h"
+#include "cinder/gl/Texture.h"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -21,7 +24,7 @@ using cinder::app::KeyEvent;
 using cinder::Color;
 using cinder::ColorA;
 using cinder::Rectf;
-//using mylibrary::SpriteLocation;
+using mylibrary::SpriteLocation;
 //using cinder::TextBox;
 using cinder::app::KeyEvent;
 using std::chrono::duration_cast;
@@ -38,18 +41,27 @@ MyApp::MyApp()
   { }
 
 void MyApp::setup() {
-
+  my_background_ = cinder::gl::Texture2d::create(loadImage(loadAsset("GrassBackground.jpg")));
+  cinder::gl::enableDepthWrite();
+  cinder::gl::enableDepthRead();
+  //DrawBackground();
 }
 
 void MyApp::update() {
-  if (top_players_.empty()) {
-    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
-    top_players_.push_back({player_name_, player_score_, NULL});
-  }
+//  if (top_players_.empty()) {
+//    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
+//    top_players_.push_back({player_name_, player_score_, NULL});
+//  }
 
 }
 
-void MyApp::draw() { }
+void MyApp::draw() {
+  cinder::gl::draw(my_background_, getWindowBounds());
+}
+
+void MyApp::DrawBackground() {
+  cinder::gl::clear(Color(0, 0, 0));
+}
 
 void MyApp::keyDown(KeyEvent event) { }
 

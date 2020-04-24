@@ -7,6 +7,8 @@
 #include <cinder/app/App.h>
 #include <cinder/gl/gl.h>
 #include <cinder/audio/audio.h>
+#include "cinder/ImageIo.h"
+#include "cinder/gl/Texture.h"
 #include <mylibrary/leaderboard.h>
 #include <mylibrary/player.h>
 
@@ -25,10 +27,13 @@ class MyApp : public cinder::app::App {
   void keyDown(cinder::app::KeyEvent) override;
 
  private:
+  void DrawBackground();
+ private:
   mylibrary::LeaderBoard leaderboard_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
   size_t player_score_;
+  cinder::gl::Texture2dRef my_background_;
 };
 
 }  // namespace myapp

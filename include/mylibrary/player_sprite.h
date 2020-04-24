@@ -5,4 +5,26 @@
 #ifndef FINALPROJECT_PLAYER_SPRITE_H
 #define FINALPROJECT_PLAYER_SPRITE_H
 
+#include "sprite_location.h"
+
+namespace mylibrary {
+class PlayerSprite {
+ public:
+  PlayerSprite();
+
+  void IsBlocked();
+
+  SpriteLocation GetLocation() const;
+  SpriteLocation SetLocation(const SpriteLocation&);
+  void SetVisibility(bool visible);
+  bool IsVisible() const;
+
+ private:
+  SpriteLocation player_location_;
+  bool visible_;
+  int mod_;
+  bool is_blocked_;
+};
+}
+
 #endif  // FINALPROJECT_PLAYER_SPRITE_H
