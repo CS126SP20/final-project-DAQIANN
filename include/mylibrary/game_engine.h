@@ -7,6 +7,7 @@
 
 #include "direction.h"
 #include "sprite.h"
+#include "player_sprite.h"
 
 namespace mylibrary {
 
@@ -22,20 +23,20 @@ class GameEngine {
 
   void SetDirection(Direction);
   //size_t GetScore const;
-  Sprite GetSprite() const;
+  Sprite GetSprite(int index) const;
   std::vector<Sprite> GetSpritesList() const;
-  //PlayerSprite GetPlayer() const;
+  PlayerSprite GetPlayer() const;
 
  private:
-  SpriteLocation GetRandomLocation();
   std::set<SpriteLocation> GetOccupiedTiles();
+  SpriteLocation GetRandomLocation();
 
  private:
   const size_t width_;
   const size_t height_;
   Sprite sprite_;
   std::vector<Sprite> sprite_list_;
-  //PlayerSprite player_;
+  PlayerSprite player_;
   Direction direction_;
   Direction last_direction_;
   std::mt19937 rng_;

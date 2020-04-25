@@ -24,12 +24,14 @@ SpriteLocation FromDirection(const Direction direction) {
   }
 }
 
-Sprite GameEngine::GetSprite() const { return sprite_; }
+Sprite GameEngine::GetSprite(int index) const { return sprite_list_[index]; }
 
 std::vector<Sprite> GameEngine::GetSpritesList() const { return sprite_list_; }
 
+PlayerSprite GameEngine::GetPlayer() const { return player_; }
+
 void GameEngine::Reset() {
-  SpriteLocation sprite_location = GetRandomLocation();
+  player_.SetLocation(GetRandomLocation());
 }
 
 GameEngine::GameEngine(size_t width, size_t height) : GameEngine{width, height, static_cast<unsigned>(std::rand())} {}
@@ -45,5 +47,15 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
   Reset();
 }
 
+std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
+  std::set<SpriteLocation> occupied_tiles;
+  for (const Sprite current : sprite_list_) {
+    occupied_tiles.insert(current.GetLocation());
+  }
+
+  return occupied_tiles;
+}
+
+//SpriteLocation GameEngine::GetRandomLocation() {  }
 
 }

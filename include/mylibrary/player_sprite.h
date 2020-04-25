@@ -11,6 +11,7 @@ namespace mylibrary {
 class PlayerSprite {
  public:
   PlayerSprite();
+  PlayerSprite(const SpriteLocation& sprite_location);
 
   void IsBlocked();
 
@@ -22,7 +23,6 @@ class PlayerSprite {
  private:
   SpriteLocation player_location_;
   bool visible_;
-  int mod_;
   bool is_blocked_;
 };
 }

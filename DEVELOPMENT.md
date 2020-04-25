@@ -19,7 +19,8 @@
    * Created the game_engine cpp file and began filling it in.
    * Created player_sprite header and cpp file.
    * Added methods and constructor to player_sprite header file.
-   * Updated my_app a bit to include some drawings/colors
+   * Updated my_app a bit to include some drawings/colors (the background)
    
 ####4/24/2020
-   * Filled in some methods for player_sprite to get engine's step working
+   * Filled in some methods for player_sprite
+   * Worked on engine cpp file
