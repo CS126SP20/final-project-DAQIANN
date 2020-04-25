@@ -24,3 +24,5 @@
 ####4/24/2020
    * Filled in some methods for player_sprite
    * Worked on engine cpp file
+   * Started the drawing of sprites
+   * Set the key binds

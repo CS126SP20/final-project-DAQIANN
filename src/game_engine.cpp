@@ -37,14 +37,23 @@ void GameEngine::Reset() {
 GameEngine::GameEngine(size_t width, size_t height) : GameEngine{width, height, static_cast<unsigned>(std::rand())} {}
 
 GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
-  : width_{width},
-    height_{height},
-    sprite_{GetRandomLocation()},
-    direction_{Direction::kRight},
-    last_direction_{Direction::kUp},
-    rng_{seed},
-    uniform_{0,1} {
+    : width_{width},
+      height_{height},
+      sprite_{GetRandomLocation()},
+      direction_{Direction::kRight},
+      last_direction_{Direction::kUp},
+      rng_{seed},
+      uniform_{0,1} {
   Reset();
+}
+
+void GameEngine::Step() {
+  SpriteLocation old_loc = FromDirection(direction_);
+  SpriteLocation new_loc = (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
+  const std::set<SpriteLocation> old_occ_tiles = GetOccupiedTiles();
+
+  SpriteLocation old = player_.GetLocation();
+  player_.SetLocation(new_loc);
 }
 
 std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
@@ -56,6 +65,29 @@ std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
   return occupied_tiles;
 }
 
-//SpriteLocation GameEngine::GetRandomLocation() {  }
+SpriteLocation GameEngine::GetRandomLocation() {
+  std::set<SpriteLocation> occupied_tiles = GetOccupiedTiles();
+  int open_space = 0;
+  SpriteLocation final_location(0,0);
+
+  for (size_t row = 0; row < height_; ++row) {
+    for (size_t col = 0; col < width_; ++col) {
+      SpriteLocation loc(row, col);
+      if (occupied_tiles.find(loc) != occupied_tiles.end()) {
+        continue;
+      }
+
+      if (uniform_(rng_) <= 1./(++open_space)) {
+        final_location = loc;
+      }
+    }
+  }
+
+  return final_location;
+}
+
+void GameEngine::SetDirection(const mylibrary::Direction direction) {
+  direction_ = direction;
+}
 
 }

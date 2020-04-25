@@ -11,6 +11,7 @@
 #include "cinder/gl/Texture.h"
 #include <mylibrary/leaderboard.h>
 #include <mylibrary/player.h>
+#include <mylibrary/game_engine.h>
 
 #include <random>
 #include <string>
@@ -28,12 +29,17 @@ class MyApp : public cinder::app::App {
 
  private:
   void DrawBackground();
+  void DrawPlayer();
  private:
+  mylibrary::GameEngine engine_;
+  std::chrono::time_point<std::chrono::system_clock> last_time_;
   mylibrary::LeaderBoard leaderboard_;
+  const size_t pace_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
   size_t player_score_;
   cinder::gl::Texture2dRef my_background_;
+
 };
 
 }  // namespace myapp

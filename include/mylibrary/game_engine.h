@@ -5,6 +5,9 @@
 #ifndef FINALPROJECT_GAME_ENGINE_H
 #define FINALPROJECT_GAME_ENGINE_H
 
+#include <random>
+#include <set>
+
 #include "direction.h"
 #include "sprite.h"
 #include "player_sprite.h"
