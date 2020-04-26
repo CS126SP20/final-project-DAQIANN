@@ -20,4 +20,8 @@ void PlayerSprite::SetVisibility(bool visible) { visible_ = visible; }
 
 bool PlayerSprite::IsVisible() const { return visible_; }
 
+void PlayerSprite::SetBlocked(bool block) { is_blocked_ = block; }
+
+bool PlayerSprite::IsBlocked() { return is_blocked_; }
+
 }

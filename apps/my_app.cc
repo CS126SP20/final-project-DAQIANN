@@ -89,15 +89,19 @@ void MyApp::keyDown(KeyEvent event) {
   switch (event.getCode()) {
     case KeyEvent::KEY_w: {
       engine_.SetDirection(Direction::kUp);
+      break;
     }
     case KeyEvent::KEY_s: {
       engine_.SetDirection(Direction::kDown);
+      break;
     }
     case KeyEvent::KEY_d: {
       engine_.SetDirection(Direction::kRight);
+      break;
     }
     case KeyEvent::KEY_a: {
       engine_.SetDirection(Direction::kLeft);
+      break;
     }
   }
 

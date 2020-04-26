@@ -39,6 +39,7 @@ GameEngine::GameEngine(size_t width, size_t height) : GameEngine{width, height, 
 GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
     : width_{width},
       height_{height},
+      score_{0},
       sprite_{GetRandomLocation()},
       direction_{Direction::kRight},
       last_direction_{Direction::kUp},
@@ -48,12 +49,17 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
 }
 
 void GameEngine::Step() {
+  //direction_ = last_direction_;
   SpriteLocation old_loc = FromDirection(direction_);
   SpriteLocation new_loc = (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
   const std::set<SpriteLocation> old_occ_tiles = GetOccupiedTiles();
 
   SpriteLocation old = player_.GetLocation();
   player_.SetLocation(new_loc);
+  last_direction_ = direction_;
+
+  //Add did it collide with collectable or non-collectable
+
 }
 
 std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
@@ -84,6 +90,10 @@ SpriteLocation GameEngine::GetRandomLocation() {
   }
 
   return final_location;
+}
+
+size_t GameEngine::GetScore() {
+  return score_;
 }
 
 void GameEngine::SetDirection(const mylibrary::Direction direction) {

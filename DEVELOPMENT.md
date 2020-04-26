@@ -26,3 +26,8 @@
    * Worked on engine cpp file
    * Started the drawing of sprites
    * Set the key binds
+   * Got an object moving although not according to the key binds and not with background
+   
+####4/25/2020
+   * Worked on getting the player to move in all four directions
+   * Added possibility to collect sprites

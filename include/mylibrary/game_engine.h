@@ -33,10 +33,12 @@ class GameEngine {
  private:
   std::set<SpriteLocation> GetOccupiedTiles();
   SpriteLocation GetRandomLocation();
+  size_t GetScore();
 
  private:
   const size_t width_;
   const size_t height_;
+  size_t score_;
   Sprite sprite_;
   std::vector<Sprite> sprite_list_;
   PlayerSprite player_;

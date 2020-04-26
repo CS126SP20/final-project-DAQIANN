@@ -19,9 +19,12 @@ class Sprite {
   ~Sprite();
 
   SpriteLocation GetLocation() const;
+  void SetCollectable(bool collect);
+  bool IsCollectable();
 
  private:
   SpriteLocation sprite_location_;
+  bool collectable_;
 };
 
 }

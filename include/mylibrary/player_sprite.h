@@ -13,12 +13,12 @@ class PlayerSprite {
   PlayerSprite();
   PlayerSprite(const SpriteLocation& sprite_location);
 
-  void IsBlocked();
-
   SpriteLocation GetLocation() const;
   SpriteLocation SetLocation(const SpriteLocation&);
   void SetVisibility(bool visible);
   bool IsVisible() const;
+  void SetBlocked(bool block);
+  bool IsBlocked();
 
  private:
   SpriteLocation player_location_;
