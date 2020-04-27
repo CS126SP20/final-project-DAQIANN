@@ -39,7 +39,7 @@ class GameEngine {
  private:
   const size_t width_;
   const size_t height_;
-  size_t score_;
+  size_t score_ = 0;
   Sprite sprite_;
   std::vector<Sprite> sprite_list_;
   PlayerSprite player_;

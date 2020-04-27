@@ -37,3 +37,6 @@
    * Added Sprites to game
    * Got it to increase the number of sprites as time progresses
    * Variations between collectable and uncollectable sprites
+   
+####4/27/2020
+   * Figuring out collision with player and sprites
