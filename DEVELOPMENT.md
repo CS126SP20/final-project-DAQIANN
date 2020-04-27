@@ -31,3 +31,9 @@
 ####4/25/2020
    * Worked on getting the player to move in all four directions
    * Added possibility to collect sprites
+   * Messed around with the pace of the game
+   
+####4/26/2020
+   * Added Sprites to game
+   * Got it to increase the number of sprites as time progresses
+   * Variations between collectable and uncollectable sprites

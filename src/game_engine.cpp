@@ -14,9 +14,9 @@ namespace mylibrary {
 SpriteLocation FromDirection(const Direction direction) {
   switch (direction) {
     case Direction::kUp:
-      return {0,1};
-    case Direction::kDown:
       return {0,-1};
+    case Direction::kDown:
+      return {0,1};
     case Direction::kLeft:
       return {-1,0};
     case Direction::kRight:
@@ -29,6 +29,12 @@ Sprite GameEngine::GetSprite(int index) const { return sprite_list_[index]; }
 std::vector<Sprite> GameEngine::GetSpritesList() const { return sprite_list_; }
 
 PlayerSprite GameEngine::GetPlayer() const { return player_; }
+
+void GameEngine::AddSprite(bool collect) {
+  Sprite new_sprite = Sprite(GetRandomLocation());
+  new_sprite.SetCollectable(collect);
+  sprite_list_.push_back(new_sprite);
+}
 
 void GameEngine::Reset() {
   player_.SetLocation(GetRandomLocation());

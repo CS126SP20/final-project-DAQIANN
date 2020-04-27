@@ -29,6 +29,7 @@ class GameEngine {
   Sprite GetSprite(int index) const;
   std::vector<Sprite> GetSpritesList() const;
   PlayerSprite GetPlayer() const;
+  void AddSprite(bool collect);
 
  private:
   std::set<SpriteLocation> GetOccupiedTiles();

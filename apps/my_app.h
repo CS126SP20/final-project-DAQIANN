@@ -30,6 +30,8 @@ class MyApp : public cinder::app::App {
  private:
   void DrawBackground();
   void DrawPlayer();
+  void DrawSprites();
+
  private:
   mylibrary::GameEngine engine_;
   std::chrono::time_point<std::chrono::system_clock> last_time_;
@@ -39,6 +41,8 @@ class MyApp : public cinder::app::App {
   const std::string player_name_;
   size_t player_score_;
   cinder::gl::Texture2dRef my_background_;
+  std::chrono::steady_clock::time_point time_begin_;
+  std::chrono::steady_clock::time_point time_end_;
 
 };
 
