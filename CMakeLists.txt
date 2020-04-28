@@ -90,6 +90,13 @@ FetchContent_Declare(
         GIT_TAG v3.24.0
 )
 
+# Command-line parsing library
+FetchContent_Declare(
+        gflags
+        GIT_REPOSITORY https://github.com/gflags/gflags.git
+        GIT_TAG v2.2.2
+)
+
 # Adds catch2 library. This is a header only library.
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
@@ -113,4 +120,11 @@ if (NOT sqlite3_POPULATED)
     FetchContent_Populate(sqlite3)
     add_subdirectory(${sqlite3_SOURCE_DIR} ${sqlite3_BINARY_DIR})
     target_include_directories(sqlite3 INTERFACE ${sqlite3_SOURCE_DIR}/src)
+endif ()
+
+# Adds gflags::gflags
+FetchContent_GetProperties(gflags)
+if (NOT gflags_POPULATED)
+    FetchContent_Populate(gflags)
+    add_subdirectory(${gflags_SOURCE_DIR} ${gflags_BINARY_DIR})
 endif ()
