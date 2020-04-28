@@ -38,6 +38,8 @@ class MyApp : public cinder::app::App {
   std::chrono::time_point<std::chrono::system_clock> last_time_;
   mylibrary::LeaderBoard leaderboard_;
   const size_t pace_;
+  const size_t size_;
+  const size_t tile_size_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
   size_t player_score_;

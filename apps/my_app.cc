@@ -13,6 +13,7 @@
 #include "cinder/gl/Texture.h"
 #include <mylibrary/player.h>
 #include <mylibrary/direction.h>
+#include <gflags/gflags.h>
 
 #include <algorithm>
 #include <chrono>
@@ -40,11 +41,18 @@ using std::string;
 const char kDbPath[] = "finalgame.db";
 const char kTheFont[] = "Arial";
 
+DECLARE_uint32(size);
+DECLARE_uint32(tilesize);
+DECLARE_uint32(pace);
+DECLARE_string(name);
+
 MyApp::MyApp()
-: engine_{16, 16},
+: engine_{FLAGS_size, FLAGS_size},
   leaderboard_{cinder::app::getAssetPath(kDbPath).string()},
-  pace_{70},
-  player_name_{"test"},
+  pace_{FLAGS_pace},
+  size_{FLAGS_size},
+  tile_size_{FLAGS_tilesize},
+  player_name_{FLAGS_name},
   player_score_{0}
   { }
 
@@ -67,7 +75,7 @@ void MyApp::update() {
   //Updates the number of sprites on the board
   time_end_ = std::chrono::steady_clock::now();
   if (std::chrono::duration_cast<std::chrono::seconds>(time_end_ - time_begin_).count() > 2) {
-    if (engine_.GetSpritesList().size() % 3 == 0) {
+    if (engine_.GetSpriteCount() % 3 == 0) {
       engine_.AddSprite(true);
     } else {
       engine_.AddSprite(false);
@@ -133,16 +141,16 @@ void MyApp::DrawSprites() {
     const SpriteLocation loc = current.GetLocation();
     if (current.IsCollectable()) {
       cinder::gl::color(Color(0,1,0));
-      cinder::gl::drawSolidRect( Rectf(50 * loc.Row(),
-                                       50 * loc.Col(),
-                                       50 * loc.Row() + 50,
-                                       50 * loc.Col() + 50));
+      cinder::gl::drawSolidRect( Rectf(tile_size_ * loc.Row(),
+                                       tile_size_ * loc.Col(),
+                                       tile_size_ * loc.Row() + tile_size_,
+                                       tile_size_ * loc.Col() + tile_size_));
     } else {
       cinder::gl::color(Color(1,0,0));
-      cinder::gl::drawSolidRect( Rectf(50 * loc.Row(),
-                                       50 * loc.Col(),
-                                       50 * loc.Row() + 50,
-                                       50 * loc.Col() + 50));
+      cinder::gl::drawSolidRect( Rectf(tile_size_ * loc.Row(),
+                                       tile_size_ * loc.Col(),
+                                       tile_size_ * loc.Row() + tile_size_,
+                                       tile_size_ * loc.Col() + tile_size_));
     }
   }
 }

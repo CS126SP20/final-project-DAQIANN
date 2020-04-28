@@ -43,3 +43,7 @@
    * Added getting highest scores and times from leaderboard method
    * Created a Game Over screen
    * Included gflags
+   
+####4/28/2020
+   * Made the green tiles disappear when gotten
+   * Expanded engine to have sprite count variable

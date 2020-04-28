@@ -34,6 +34,11 @@ void GameEngine::AddSprite(bool collect) {
   Sprite new_sprite = Sprite(GetRandomLocation());
   new_sprite.SetCollectable(collect);
   sprite_list_.push_back(new_sprite);
+  sprite_count_++;
+}
+
+size_t GameEngine::GetSpriteCount() {
+  return sprite_count_;
 }
 
 void GameEngine::Reset() {
@@ -47,6 +52,7 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
       height_{height},
       score_{0},
       sprite_{GetRandomLocation()},
+      sprite_count_{0},
       direction_{Direction::kRight},
       last_direction_{Direction::kUp},
       rng_{seed},
@@ -66,12 +72,13 @@ void GameEngine::Step() {
 
   //Add did it collide with collectable or non-collectable
   const std::set<SpriteLocation> new_occ_tiles = GetOccupiedTiles();
-  for (Sprite current : sprite_list_) {
-    if (current.GetLocation() == player_.GetLocation() && current.IsCollectable()) {
+  for (int index = 0; index < sprite_list_.size(); index++) {
+    if (sprite_list_.at(index).GetLocation() == player_.GetLocation() && sprite_list_.at(index).IsCollectable()) {
       score_++;
       std::cout << score_;
-      current.SetCollectable(false);
-    } else if (current.GetLocation() == player_.GetLocation() && !current.IsCollectable()) {
+      sprite_list_.erase(sprite_list_.begin() + index);
+      //current.SetCollectable(false);
+    } else if (sprite_list_.at(index).GetLocation() == player_.GetLocation() && !sprite_list_.at(index).IsCollectable()) {
       player_.SetBlocked(true);
     }
   }

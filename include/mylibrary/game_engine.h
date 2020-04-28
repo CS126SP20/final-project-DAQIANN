@@ -30,6 +30,7 @@ class GameEngine {
   std::vector<Sprite> GetSpritesList() const;
   PlayerSprite GetPlayer() const;
   void AddSprite(bool collect);
+  size_t GetSpriteCount();
 
  private:
   std::set<SpriteLocation> GetOccupiedTiles();
@@ -41,6 +42,7 @@ class GameEngine {
   const size_t height_;
   size_t score_ = 0;
   Sprite sprite_;
+  size_t sprite_count_ = 0;
   std::vector<Sprite> sprite_list_;
   PlayerSprite player_;
   Direction direction_;
