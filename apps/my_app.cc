@@ -11,12 +11,13 @@
 #include <cinder/audio/audio.h>
 #include "cinder/ImageIo.h"
 #include "cinder/gl/Texture.h"
+#include <mylibrary/player.h>
+#include <mylibrary/direction.h>
+
 #include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <string>
-#include <mylibrary/player.h>
-#include <mylibrary/direction.h>
 #include <iostream>
 
 namespace myapp {
@@ -25,6 +26,7 @@ using cinder::app::KeyEvent;
 using cinder::Color;
 using cinder::ColorA;
 using cinder::Rectf;
+using cinder::TextBox;
 using mylibrary::SpriteLocation;
 using mylibrary::Direction;
 using mylibrary::Sprite;
@@ -36,6 +38,7 @@ using std::chrono::system_clock;
 using std::string;
 
 const char kDbPath[] = "finalgame.db";
+const char kTheFont[] = "Arial";
 
 MyApp::MyApp()
 : engine_{16, 16},
@@ -63,7 +66,7 @@ void MyApp::update() {
 
   //Updates the number of sprites on the board
   time_end_ = std::chrono::steady_clock::now();
-  if (std::chrono::duration_cast<std::chrono::seconds>(time_end_ - time_begin_).count() > 3) {
+  if (std::chrono::duration_cast<std::chrono::seconds>(time_end_ - time_begin_).count() > 2) {
     if (engine_.GetSpritesList().size() % 3 == 0) {
       engine_.AddSprite(true);
     } else {
@@ -82,9 +85,32 @@ void MyApp::update() {
 void MyApp::draw() {
   cinder::gl::enableAlphaBlending();
   cinder::gl::clear();
-  DrawBackground();
-  DrawPlayer();
-  DrawSprites();
+  if (engine_.GetPlayer().IsBlocked()) {
+    DrawGameOver();
+  } else {
+    DrawBackground();
+    DrawPlayer();
+    DrawSprites();
+  }
+}
+
+template <typename C>
+void Print(const string& text, const C& color, const cinder::ivec2& size, const cinder::vec2& loc) {
+  cinder::gl::color(color);
+
+  auto box = TextBox()
+      .alignment(TextBox::CENTER)
+      .font(cinder::Font(kTheFont, 40))
+      .size(size)
+      .color(color)
+      .backgroundColor(ColorA(0,0,0,0))
+      .text(text);
+
+  const auto box_size = box.getSize();
+  const cinder::vec2 locp = {loc.x - box_size.x / 2, loc.y - box_size.y / 2};
+  const auto surface = box.render();
+  const auto texture = cinder::gl::Texture::create(surface);
+  cinder::gl::draw(texture, locp);
 }
 
 void MyApp::DrawBackground() {
@@ -94,7 +120,7 @@ void MyApp::DrawBackground() {
 
 void MyApp::DrawPlayer() {
   const SpriteLocation loc = engine_.GetPlayer().GetLocation();
-  cinder::gl::color(Color(0,0,1));
+  cinder::gl::color(Color(1,1,1));
   cinder::gl::drawSolidRect( Rectf(50 * loc.Row(),
                                   50 * loc.Col(),
                                   50 * loc.Row() + 50,
@@ -119,6 +145,12 @@ void MyApp::DrawSprites() {
                                        50 * loc.Col() + 50));
     }
   }
+}
+
+void MyApp::DrawGameOver() {
+  size_t row = 0;
+  Print("Game Over", Color(1,0,0), {500, 50}, getWindowCenter());
+
 }
 
 void MyApp::keyDown(KeyEvent event) {

@@ -18,6 +18,9 @@ namespace mylibrary {
    explicit LeaderBoard(const std::string& db_path);
    void AddScoreToLeaderBoard(const Player&);
    void AddTimeToLeaderBoard(const Player&);
+   std::vector<Player> GetPlayers(sqlite::database_binder* rows);
+   std::vector<Player> RetrieveHighScores(const size_t limit);
+   std::vector<Player> RetrieveLongestTimes(const size_t limit);
   private:
    sqlite::database db_;
  };

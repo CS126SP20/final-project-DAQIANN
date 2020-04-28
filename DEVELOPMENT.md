@@ -40,3 +40,5 @@
    
 ####4/27/2020
    * Figuring out collision with player and sprites
+   * Added getting highest scores and times from leaderboard method
+   * Created a Game Over screen

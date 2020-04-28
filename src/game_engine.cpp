@@ -67,9 +67,12 @@ void GameEngine::Step() {
   //Add did it collide with collectable or non-collectable
   const std::set<SpriteLocation> new_occ_tiles = GetOccupiedTiles();
   for (Sprite current : sprite_list_) {
-    if (current.GetLocation() == player_.GetLocation()  && current.IsCollectable()) {
+    if (current.GetLocation() == player_.GetLocation() && current.IsCollectable()) {
       score_++;
       std::cout << score_;
+      current.SetCollectable(false);
+    } else if (current.GetLocation() == player_.GetLocation() && !current.IsCollectable()) {
+      player_.SetBlocked(true);
     }
   }
 
