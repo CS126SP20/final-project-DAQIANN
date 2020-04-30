@@ -7,3 +7,6 @@ Read [this document](https://cliutils.gitlab.io/modern-cmake/chapters/basics/str
 layout.
 
 **Author**: Daniel Qian - [danielq3@illinois.edu](mailto:danielq3@illinois.edu)
+
+Final Project: 
+This is a arcade-like game where one manuevers around a board

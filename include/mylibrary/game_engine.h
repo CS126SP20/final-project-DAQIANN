@@ -31,11 +31,11 @@ class GameEngine {
   PlayerSprite GetPlayer() const;
   void AddSprite(bool collect);
   size_t GetSpriteCount();
+  size_t GetScore();
 
  private:
   std::set<SpriteLocation> GetOccupiedTiles();
   SpriteLocation GetRandomLocation();
-  size_t GetScore();
 
  private:
   const size_t width_;

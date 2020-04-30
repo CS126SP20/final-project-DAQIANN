@@ -40,13 +40,14 @@ class MyApp : public cinder::app::App {
   const size_t pace_;
   const size_t size_;
   const size_t tile_size_;
+  bool printed_over_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
-  size_t player_score_;
   cinder::gl::Texture2dRef my_background_;
   std::chrono::steady_clock::time_point time_begin_;
   std::chrono::steady_clock::time_point time_end_;
-
+  std::chrono::steady_clock::time_point game_begin_;
+  std::chrono::steady_clock::time_point game_end_;
 };
 
 }  // namespace myapp

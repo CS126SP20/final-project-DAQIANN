@@ -12,17 +12,15 @@ using std::vector;
 LeaderBoard::LeaderBoard(const string& db_path) : db_{db_path} {
   db_ << "CREATE TABLE if not exists leaderboard (\n"
          "  name TEXT NOT NULL,\n"
-         "  score INTEGER \n"
+         "  score INTEGER NOT NULL, \n"
+         "  time INTEGER NOT NULL \n"
          ");";
 }
 
-void LeaderBoard::AddScoreToLeaderBoard(const Player& player) {
-  db_ << u"insert into leaderboard (name, score) values (?, ?);" << player.name
-      << player.score;
-}
-
-void LeaderBoard::AddTimeToLeaderBoard(const Player& player) {
-  db_ << u"insert into leaderboard (time) values ?;" << player.time;
+void LeaderBoard::AddToLeaderBoard(const Player& player) {
+  db_ << u"insert into leaderboard (name, score, time) values (?, ?, ?);" << player.name
+      << player.score
+      << player.time;
 }
 
 vector<Player> LeaderBoard::GetPlayers(sqlite::database_binder *rows) {
@@ -41,7 +39,7 @@ vector<Player> LeaderBoard::GetPlayers(sqlite::database_binder *rows) {
 }
 
 vector<Player> LeaderBoard::RetrieveHighScores(const size_t limit) {
-  auto rows = db_ << "select name, score from leaderboard order by score desc limit ? ;"
+  auto rows = db_ << "select name, score, time from leaderboard order by score desc limit ? ;"
       << limit;
   return GetPlayers(&rows);
 }

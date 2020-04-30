@@ -52,25 +52,31 @@ MyApp::MyApp()
   pace_{FLAGS_pace},
   size_{FLAGS_size},
   tile_size_{FLAGS_tilesize},
-  player_name_{FLAGS_name},
-  player_score_{0}
+  printed_over_{false},
+  player_name_{FLAGS_name}
   { }
 
 void MyApp::setup() {
-  my_background_ = cinder::gl::Texture2d::create(loadImage(loadAsset("asphalt.jpg")));
   cinder::gl::enableDepthWrite();
   cinder::gl::enableDepthRead();
+  my_background_ = cinder::gl::Texture2d::create(loadImage(loadAsset("asphalt.jpg")));
   engine_.AddSprite(false);
   time_begin_ = std::chrono::steady_clock::now();
+  game_begin_ = std::chrono::steady_clock::now();
   //DrawBackground();
 }
 
 void MyApp::update() {
   const auto time = system_clock::now();
-//  if (top_players_.empty()) {
-//    leaderboard_.AddScoreToLeaderBoard({player_name_, player_score_, NULL});
-//    top_players_.push_back({player_name_, player_score_, NULL});
-//  }
+  if (engine_.GetPlayer().IsBlocked()) {
+    game_end_ = std::chrono::steady_clock::now();
+    if (top_players_.empty()) {
+      leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore(), static_cast<size_t>(std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)});
+      top_players_ = leaderboard_.RetrieveHighScores(1);
+      assert(!top_players_.empty());
+    }
+    return;
+  }
 
   //Updates the number of sprites on the board
   time_end_ = std::chrono::steady_clock::now();
@@ -92,14 +98,17 @@ void MyApp::update() {
 
 void MyApp::draw() {
   cinder::gl::enableAlphaBlending();
-  cinder::gl::clear();
   if (engine_.GetPlayer().IsBlocked()) {
-    DrawGameOver();
-  } else {
-    DrawBackground();
-    DrawPlayer();
-    DrawSprites();
+    if (!printed_over_) {
+      cinder::gl::clear(Color(0, 0, 0));
+    }
+      DrawGameOver();
+      return;
   }
+  cinder::gl::clear();
+  DrawBackground();
+  DrawPlayer();
+  DrawSprites();
 }
 
 template <typename C>
@@ -156,9 +165,22 @@ void MyApp::DrawSprites() {
 }
 
 void MyApp::DrawGameOver() {
+  if (printed_over_ || top_players_.empty()) {
+    return;
+  }
   size_t row = 0;
-  Print("Game Over", Color(1,0,0), {500, 50}, getWindowCenter());
+  const cinder::vec2 center = getWindowCenter();
+  const cinder::ivec2 size = {500,50};
+  const Color color_red = Color(1,0,0);
+  Print("Game Over", color_red, size, center);
 
+  for (const mylibrary::Player& player : top_players_) {
+    std::stringstream ss;
+    ss << player.name << " - " << player.score << " - " << player.time;
+    Print(ss.str(), color_red, size, {center.x, center.y + (++row) * 50});
+  }
+
+  printed_over_ = true;
 }
 
 void MyApp::keyDown(KeyEvent event) {
