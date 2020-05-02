@@ -213,6 +213,11 @@ void MyApp::keyDown(KeyEvent event) {
       ResetGame();
       break;
     }
+
+    case KeyEvent::KEY_q: {
+      std::exit(0);
+      break;
+    }
   }
 }
 

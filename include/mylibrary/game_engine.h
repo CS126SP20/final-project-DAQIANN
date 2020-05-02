@@ -45,7 +45,6 @@ class GameEngine {
   std::vector<Sprite> sprite_list_;
   PlayerSprite player_;
   Direction direction_;
-  Direction last_direction_;
   std::mt19937 rng_;
   std::uniform_real_distribution<double> uniform_;
 

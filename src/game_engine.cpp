@@ -43,6 +43,9 @@ size_t GameEngine::GetSpriteCount() {
 
 void GameEngine::Reset() {
   player_.SetLocation(GetRandomLocation());
+  sprite_list_.clear();
+  sprite_count_ = 0;
+  score_ = 0;
 }
 
 GameEngine::GameEngine(size_t width, size_t height) : GameEngine{width, height, static_cast<unsigned>(std::rand())} {}
@@ -54,7 +57,6 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
       sprite_{GetRandomLocation()},
       sprite_count_{0},
       direction_{Direction::kRight},
-      last_direction_{Direction::kUp},
       rng_{seed},
       uniform_{0,1} {
   Reset();
@@ -66,9 +68,7 @@ void GameEngine::Step() {
   SpriteLocation new_loc = (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
   const std::set<SpriteLocation> old_occ_tiles = GetOccupiedTiles();
 
-  SpriteLocation old = player_.GetLocation();
   player_.SetLocation(new_loc);
-  last_direction_ = direction_;
 
   //Add did it collide with collectable or non-collectable
   const std::set<SpriteLocation> new_occ_tiles = GetOccupiedTiles();
