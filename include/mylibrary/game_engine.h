@@ -25,7 +25,6 @@ class GameEngine {
   void Step();
 
   void SetDirection(Direction);
-  //size_t GetScore const;
   Sprite GetSprite(int index) const;
   std::vector<Sprite> GetSpritesList() const;
   PlayerSprite GetPlayer() const;

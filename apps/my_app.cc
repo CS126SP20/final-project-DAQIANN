@@ -59,7 +59,9 @@ MyApp::MyApp()
 void MyApp::setup() {
   cinder::gl::enableDepthWrite();
   cinder::gl::enableDepthRead();
-  my_background_ = cinder::gl::Texture2d::create(loadImage(loadAsset("asphalt.jpg")));
+  image_grass_ = cinder::gl::Texture2d::create(loadImage(loadAsset("GrassBackground.jpg")));
+  image_player_ = cinder::gl::Texture2d::create(loadImage(loadAsset("secondsprite.jpg")));
+  image_enemy_ = cinder::gl::Texture2d::create(loadImage(loadAsset("enemy.png")));
   engine_.AddSprite(false);
   time_begin_ = std::chrono::steady_clock::now();
   game_begin_ = std::chrono::steady_clock::now();
@@ -102,8 +104,9 @@ void MyApp::draw() {
     if (!printed_over_) {
       cinder::gl::clear(Color(0, 0, 0));
     }
-      DrawGameOver();
-      return;
+    //cinder::gl::draw(image_grass_, getWindowCenter());
+    DrawGameOver();
+    return;
   }
   cinder::gl::clear();
   DrawBackground();
@@ -138,10 +141,10 @@ void MyApp::DrawBackground() {
 void MyApp::DrawPlayer() {
   const SpriteLocation loc = engine_.GetPlayer().GetLocation();
   cinder::gl::color(Color(1,1,1));
-  cinder::gl::drawSolidRect( Rectf(50 * loc.Row(),
-                                  50 * loc.Col(),
-                                  50 * loc.Row() + 50,
-                                  50 * loc.Col() + 50));
+  cinder::gl::draw(image_player_, Rectf(tile_size_ * loc.Row(),
+                                       tile_size_ * loc.Col(),
+                                       tile_size_ * loc.Row() + tile_size_,
+                                       tile_size_ * loc.Col() + tile_size_));
   const cinder::vec2 center = getWindowCenter();
 }
 
@@ -150,13 +153,14 @@ void MyApp::DrawSprites() {
     const SpriteLocation loc = current.GetLocation();
     if (current.IsCollectable()) {
       cinder::gl::color(Color(0,1,0));
-      cinder::gl::drawSolidRect( Rectf(tile_size_ * loc.Row(),
+      cinder::gl::draw(image_grass_, Rectf(tile_size_ * loc.Row(),
                                        tile_size_ * loc.Col(),
                                        tile_size_ * loc.Row() + tile_size_,
                                        tile_size_ * loc.Col() + tile_size_));
+
     } else {
       cinder::gl::color(Color(1,0,0));
-      cinder::gl::drawSolidRect( Rectf(tile_size_ * loc.Row(),
+      cinder::gl::draw( image_enemy_, Rectf(tile_size_ * loc.Row(),
                                        tile_size_ * loc.Col(),
                                        tile_size_ * loc.Row() + tile_size_,
                                        tile_size_ * loc.Col() + tile_size_));

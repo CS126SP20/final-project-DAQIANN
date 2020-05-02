@@ -51,3 +51,9 @@
 ####4/29/2020
    * Added printing out high scores at game over screen
    * Fixed leaderboard not allowing time variable to be added
+   
+####4/30/2020
+   * Was able to get a discolored variation of an image onto a tile.
+   
+####5/1/2020
+   * Added image to player

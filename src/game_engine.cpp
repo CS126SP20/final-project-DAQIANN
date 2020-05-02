@@ -77,7 +77,6 @@ void GameEngine::Step() {
       score_++;
       std::cout << score_;
       sprite_list_.erase(sprite_list_.begin() + index);
-      //current.SetCollectable(false);
     } else if (sprite_list_.at(index).GetLocation() == player_.GetLocation() && !sprite_list_.at(index).IsCollectable()) {
       player_.SetBlocked(true);
     }
