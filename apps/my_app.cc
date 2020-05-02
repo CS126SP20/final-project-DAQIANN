@@ -104,7 +104,6 @@ void MyApp::draw() {
     if (!printed_over_) {
       cinder::gl::clear(Color(0, 0, 0));
     }
-    //cinder::gl::draw(image_grass_, getWindowCenter());
     DrawGameOver();
     return;
   }
