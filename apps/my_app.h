@@ -32,6 +32,7 @@ class MyApp : public cinder::app::App {
   void DrawPlayer();
   void DrawSprites();
   void DrawGameOver();
+  void ResetGame();
 
  private:
   mylibrary::GameEngine engine_;

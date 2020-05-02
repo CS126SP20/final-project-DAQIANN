@@ -208,8 +208,18 @@ void MyApp::keyDown(KeyEvent event) {
       engine_.SetDirection(Direction::kLeft);
       break;
     }
-  }
 
+    case KeyEvent::KEY_r: {
+      ResetGame();
+      break;
+    }
+  }
+}
+
+void MyApp::ResetGame() {
+  engine_.Reset();
+  printed_over_ = false;
+  top_players_.clear();
 }
 
 }  // namespace myapp

@@ -57,3 +57,5 @@
    
 ####5/1/2020
    * Added image to player
+   * Created tests for sprite and player_sprite
+   * Started creation of resetting the game

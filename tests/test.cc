@@ -36,6 +36,12 @@ TEST_CASE("Player test") {
     REQUIRE(player_test.GetLocation().Col() == 2);
   }
 
+  SECTION("Set location check") {
+    player_test.SetLocation({2,3});
+    REQUIRE(player_test.GetLocation().Row() == 2);
+    REQUIRE(player_test.GetLocation().Col() == 3);
+  }
+
   SECTION("Blocked check") {
     player_test.SetBlocked(true);
     REQUIRE(player_test.IsBlocked() == true);
