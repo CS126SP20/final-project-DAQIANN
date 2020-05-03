@@ -21,9 +21,7 @@ class GameEngine {
   GameEngine(size_t width, size_t height, unsigned seed);
 
   void Reset();
-
   void Step();
-
   void SetDirection(Direction);
   Sprite GetSprite(int index) const;
   std::vector<Sprite> GetSpritesList() const;

@@ -30,6 +30,7 @@ std::vector<Sprite> GameEngine::GetSpritesList() const { return sprite_list_; }
 
 PlayerSprite GameEngine::GetPlayer() const { return player_; }
 
+//Creates new Sprite and adds it to the list
 void GameEngine::AddSprite(bool collect) {
   Sprite new_sprite = Sprite(GetRandomLocation());
   new_sprite.SetCollectable(collect);
@@ -41,6 +42,7 @@ size_t GameEngine::GetSpriteCount() {
   return sprite_count_;
 }
 
+//Resets everything in the engine
 void GameEngine::Reset() {
   player_.SetLocation(GetRandomLocation());
   sprite_list_.clear();
@@ -62,12 +64,12 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
   Reset();
 }
 
+//Decides what to do when player makes a move
 void GameEngine::Step() {
   //direction_ = last_direction_;
   SpriteLocation old_loc = FromDirection(direction_);
   SpriteLocation new_loc = (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
   const std::set<SpriteLocation> old_occ_tiles = GetOccupiedTiles();
-
   player_.SetLocation(new_loc);
 
   //Add did it collide with collectable or non-collectable
@@ -84,6 +86,7 @@ void GameEngine::Step() {
 
 }
 
+//Returns the tiles that are occupied by sprites
 std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
   std::set<SpriteLocation> occupied_tiles;
   for (const Sprite current : sprite_list_) {

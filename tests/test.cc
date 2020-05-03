@@ -10,13 +10,7 @@
 
 #include <catch2/catch.hpp>
 
-TEST_CASE("Random sanity test", "[random]") {
-  const float random = cinder::randFloat();
-  REQUIRE(0. <= random);
-  REQUIRE(random <= 1.);
-}
-
-TEST_CASE("Sprite test", "[sprite]") {
+TEST_CASE("Sprite test") {
   mylibrary::Sprite sprite_test({1, 2});
   SECTION("Location check") {
     REQUIRE(sprite_test.GetLocation().Row() == 1);
@@ -48,7 +42,11 @@ TEST_CASE("Player test") {
   }
 }
 
-//TEST_CASE("Test adding sprite", "[sprite][add]") {
+TEST_CASE("Location test") {
+  mylibrary::SpriteLocation
+}
+
+//TEST_CASE("Test adding sprite") {
 //  mylibrary::GameEngine engine_test(16,16);
 //  engine_test.AddSprite(false);
 //  REQUIRE(engine_test.GetSpriteCount() == 1);

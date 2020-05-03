@@ -5,9 +5,10 @@
 #include <mylibrary/player_sprite.h>
 
 namespace mylibrary {
-PlayerSprite::PlayerSprite() : player_location_{0,0}, visible_{true}, is_blocked_{false} {}
+PlayerSprite::PlayerSprite() : player_location_{0, 0}, is_blocked_{false} {}
 
-PlayerSprite::PlayerSprite(const SpriteLocation& player_location) : player_location_(player_location), visible_{true} {}
+PlayerSprite::PlayerSprite(const SpriteLocation& player_location)
+    : player_location_(player_location) {}
 
 SpriteLocation PlayerSprite::GetLocation() const { return player_location_; }
 
@@ -16,12 +17,8 @@ SpriteLocation PlayerSprite::SetLocation(const mylibrary::SpriteLocation& locati
   return player_location_;
 }
 
-void PlayerSprite::SetVisibility(bool visible) { visible_ = visible; }
-
-bool PlayerSprite::IsVisible() const { return visible_; }
-
 void PlayerSprite::SetBlocked(bool block) { is_blocked_ = block; }
 
 bool PlayerSprite::IsBlocked() { return is_blocked_; }
 
-}
+}  // namespace mylibrary

@@ -44,9 +44,11 @@ class MyApp : public cinder::app::App {
   bool printed_over_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
-  cinder::gl::Texture2dRef image_grass_;
   cinder::gl::Texture2dRef image_player_;
   cinder::gl::Texture2dRef image_enemy_;
+  cinder::gl::Texture2dRef image_asphalt_;
+  cinder::gl::Texture2dRef image_board_;
+  cinder::gl::Texture2dRef image_money_;
   std::chrono::steady_clock::time_point time_begin_;
   std::chrono::steady_clock::time_point time_end_;
   std::chrono::steady_clock::time_point game_begin_;

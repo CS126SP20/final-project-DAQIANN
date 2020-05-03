@@ -31,7 +31,7 @@ using cinder::TextBox;
 using mylibrary::SpriteLocation;
 using mylibrary::Direction;
 using mylibrary::Sprite;
-//using cinder::TextBox;
+using cinder::TextBox;
 using cinder::app::KeyEvent;
 using std::chrono::duration_cast;
 using std::chrono::seconds;
@@ -57,15 +57,17 @@ MyApp::MyApp()
   { }
 
 void MyApp::setup() {
+  std::cout << "setup";
   cinder::gl::enableDepthWrite();
   cinder::gl::enableDepthRead();
-  image_grass_ = cinder::gl::Texture2d::create(loadImage(loadAsset("GrassBackground.jpg")));
   image_player_ = cinder::gl::Texture2d::create(loadImage(loadAsset("secondsprite.jpg")));
-  image_enemy_ = cinder::gl::Texture2d::create(loadImage(loadAsset("enemy.png")));
-  engine_.AddSprite(false);
+  image_enemy_ = cinder::gl::Texture2d::create(loadImage(loadAsset("bombsprite.png")));
+  image_asphalt_ = cinder::gl::Texture2d::create(loadImage(loadAsset("moreasphalt.jpg")));
+  image_board_ = cinder::gl::Texture2d::create(loadImage(loadAsset("BlackBoard.jpg")));
+  image_money_ = cinder::gl::Texture2d::create(loadImage(loadAsset("money.png")));
+  //engine_.AddSprite(false);
   time_begin_ = std::chrono::steady_clock::now();
   game_begin_ = std::chrono::steady_clock::now();
-  //DrawBackground();
 }
 
 void MyApp::update() {
@@ -82,7 +84,7 @@ void MyApp::update() {
 
   //Updates the number of sprites on the board
   time_end_ = std::chrono::steady_clock::now();
-  if (std::chrono::duration_cast<std::chrono::seconds>(time_end_ - time_begin_).count() > 2) {
+  if ((std::chrono::duration_cast<std::chrono::milliseconds>(time_end_ - time_begin_).count() / 1000000) > 2) {
     if (engine_.GetSpriteCount() % 3 == 0) {
       engine_.AddSprite(true);
     } else {
@@ -99,15 +101,18 @@ void MyApp::update() {
 }
 
 void MyApp::draw() {
-  cinder::gl::enableAlphaBlending();
   if (engine_.GetPlayer().IsBlocked()) {
     if (!printed_over_) {
-      cinder::gl::clear(Color(0, 0, 0));
+      cinder::gl::clear();
+      cinder::gl::disableDepthRead();
+      cinder::gl::disableDepthRead();
+      cinder::gl::enableAlphaBlending();
+      cinder::gl::color(Color(1,1,1));
+      cinder::gl::draw(image_board_, getWindowBounds());
     }
     DrawGameOver();
     return;
   }
-  cinder::gl::clear();
   DrawBackground();
   DrawPlayer();
   DrawSprites();
@@ -133,8 +138,12 @@ void Print(const string& text, const C& color, const cinder::ivec2& size, const 
 }
 
 void MyApp::DrawBackground() {
-  cinder::gl::clear(Color(0,0,0));
-  //cinder::gl::draw(my_background_, getWindowBounds());
+  cinder::gl::clear();
+  cinder::gl::disableDepthRead();
+  cinder::gl::disableDepthRead();
+  cinder::gl::enableAlphaBlending();
+  cinder::gl::color(Color(1,1,1));
+  cinder::gl::draw(image_asphalt_, getWindowBounds());
 }
 
 void MyApp::DrawPlayer() {
@@ -152,7 +161,7 @@ void MyApp::DrawSprites() {
     const SpriteLocation loc = current.GetLocation();
     if (current.IsCollectable()) {
       cinder::gl::color(Color(0,1,0));
-      cinder::gl::draw(image_grass_, Rectf(tile_size_ * loc.Row(),
+      cinder::gl::draw(image_money_, Rectf(tile_size_ * loc.Row(),
                                        tile_size_ * loc.Col(),
                                        tile_size_ * loc.Row() + tile_size_,
                                        tile_size_ * loc.Col() + tile_size_));
@@ -179,7 +188,7 @@ void MyApp::DrawGameOver() {
 
   for (const mylibrary::Player& player : top_players_) {
     std::stringstream ss;
-    ss << player.name << " - " << player.score << " - " << player.time;
+    ss << player.name << " - " << player.score << " - " << player.time << " seconds";
     Print(ss.str(), color_red, size, {center.x, center.y + (++row) * 50});
   }
 

@@ -60,3 +60,9 @@
    * Created tests for sprite and player_sprite
    * Started creation of resetting the game
    * Made some small changes to KeyEvent
+   * Removed unnecessary pieces of code
+ 
+####5/2/2020
+   * Was able to create a background
+   * Changed some of the images
+   * Began writing into README file
