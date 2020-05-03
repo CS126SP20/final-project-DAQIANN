@@ -66,3 +66,6 @@
    * Was able to create a background
    * Changed some of the images
    * Began writing into README file
+   
+####5/3/2020
+   * Added pausing into the game

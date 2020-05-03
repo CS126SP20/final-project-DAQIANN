@@ -42,6 +42,7 @@ class MyApp : public cinder::app::App {
   const size_t size_;
   const size_t tile_size_;
   bool printed_over_;
+  bool paused_;
   std::vector<mylibrary::Player> top_players_;
   const std::string player_name_;
   cinder::gl::Texture2dRef image_player_;
@@ -53,6 +54,8 @@ class MyApp : public cinder::app::App {
   std::chrono::steady_clock::time_point time_end_;
   std::chrono::steady_clock::time_point game_begin_;
   std::chrono::steady_clock::time_point game_end_;
+  std::chrono::steady_clock::time_point pause_start_;
+  std::chrono::steady_clock::time_point pause_end_;
 };
 
 }  // namespace myapp

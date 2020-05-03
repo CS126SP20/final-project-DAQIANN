@@ -53,6 +53,7 @@ MyApp::MyApp()
   size_{FLAGS_size},
   tile_size_{FLAGS_tilesize},
   printed_over_{false},
+  paused_{false},
   player_name_{FLAGS_name}
   { }
 
@@ -65,26 +66,29 @@ void MyApp::setup() {
   image_asphalt_ = cinder::gl::Texture2d::create(loadImage(loadAsset("moreasphalt.jpg")));
   image_board_ = cinder::gl::Texture2d::create(loadImage(loadAsset("BlackBoard.jpg")));
   image_money_ = cinder::gl::Texture2d::create(loadImage(loadAsset("money.png")));
-  //engine_.AddSprite(false);
   time_begin_ = std::chrono::steady_clock::now();
   game_begin_ = std::chrono::steady_clock::now();
 }
 
 void MyApp::update() {
-  const auto time = system_clock::now();
   if (engine_.GetPlayer().IsBlocked()) {
     game_end_ = std::chrono::steady_clock::now();
     if (top_players_.empty()) {
       leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore(), static_cast<size_t>(std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)});
-      top_players_ = leaderboard_.RetrieveHighScores(1);
+      top_players_ = leaderboard_.RetrieveLongestTimes(3);
       assert(!top_players_.empty());
     }
     return;
   }
 
+  if (paused_) {
+    return;
+  }
+  const auto time = system_clock::now();
+
   //Updates the number of sprites on the board
   time_end_ = std::chrono::steady_clock::now();
-  if ((std::chrono::duration_cast<std::chrono::milliseconds>(time_end_ - time_begin_).count() / 1000000) > 2) {
+  if (std::chrono::duration_cast<std::chrono::seconds>(time_end_ - time_begin_).count() > 2) {
     if (engine_.GetSpriteCount() % 3 == 0) {
       engine_.AddSprite(true);
     } else {
@@ -111,6 +115,9 @@ void MyApp::draw() {
       cinder::gl::draw(image_board_, getWindowBounds());
     }
     DrawGameOver();
+    return;
+  }
+  if (paused_) {
     return;
   }
   DrawBackground();
@@ -186,10 +193,13 @@ void MyApp::DrawGameOver() {
   const Color color_red = Color(1,0,0);
   Print("Game Over", color_red, size, center);
 
+  std::stringstream ss;
+  ss << "High Values: ";
+  Print(ss.str(), color_red, size, {center.x, center.y + (++row) * 50});
   for (const mylibrary::Player& player : top_players_) {
-    std::stringstream ss;
-    ss << player.name << " - " << player.score << " - " << player.time << " seconds";
-    Print(ss.str(), color_red, size, {center.x, center.y + (++row) * 50});
+    std::stringstream ss_new;
+    ss_new << player.name << " - " << player.score << " - " << player.time << " seconds";
+    Print(ss_new.str(), color_red, size, {center.x, center.y + (++row) * 50});
   }
 
   printed_over_ = true;
@@ -218,6 +228,14 @@ void MyApp::keyDown(KeyEvent event) {
       break;
     }
 
+    case KeyEvent::KEY_p: {
+      pause_start_ = std::chrono::steady_clock::now();
+      paused_ = !paused_;
+      if (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - pause_start_).count() != 0) {
+        pause_end_ = std::chrono::steady_clock::now();
+      }
+    }
+
     case KeyEvent::KEY_r: {
       ResetGame();
       break;
@@ -225,7 +243,6 @@ void MyApp::keyDown(KeyEvent event) {
 
     case KeyEvent::KEY_q: {
       std::exit(0);
-      break;
     }
   }
 }

@@ -42,12 +42,12 @@ TEST_CASE("Player test") {
   }
 }
 
-TEST_CASE("Location test") {
-  mylibrary::SpriteLocation
-}
-
+//TEST_CASE("Location test") {
+//  mylibrary::SpriteLocation
+//}
+//
 //TEST_CASE("Test adding sprite") {
-//  mylibrary::GameEngine engine_test(16,16);
+//  mylibrary::GameEngine engine_test{16,16};
 //  engine_test.AddSprite(false);
 //  REQUIRE(engine_test.GetSpriteCount() == 1);
 //}

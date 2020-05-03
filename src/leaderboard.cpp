@@ -45,7 +45,7 @@ vector<Player> LeaderBoard::RetrieveHighScores(const size_t limit) {
 }
 
 vector<Player> LeaderBoard::RetrieveLongestTimes(const size_t limit) {
-  auto rows = db_ << "select name, time from leaderboard order by time desc limit ? ;"
+  auto rows = db_ << "select name, score, time from leaderboard order by time desc limit ? ;"
                   << limit;
   return GetPlayers(&rows);
 }
