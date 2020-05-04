@@ -56,6 +56,7 @@ class MyApp : public cinder::app::App {
   std::chrono::steady_clock::time_point game_end_;
   std::chrono::steady_clock::time_point pause_start_;
   std::chrono::steady_clock::time_point pause_end_;
+  float total_time_paused_;
 };
 
 }  // namespace myapp

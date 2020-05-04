@@ -68,13 +68,15 @@ void MyApp::setup() {
   image_money_ = cinder::gl::Texture2d::create(loadImage(loadAsset("money.png")));
   time_begin_ = std::chrono::steady_clock::now();
   game_begin_ = std::chrono::steady_clock::now();
+  total_time_paused_ = 0.0;
 }
 
 void MyApp::update() {
   if (engine_.GetPlayer().IsBlocked()) {
     game_end_ = std::chrono::steady_clock::now();
     if (top_players_.empty()) {
-      leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore(), static_cast<size_t>(std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)});
+      leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore()
+                                     , static_cast<size_t>((std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)- total_time_paused_)});
       top_players_ = leaderboard_.RetrieveLongestTimes(3);
       assert(!top_players_.empty());
     }
@@ -229,11 +231,14 @@ void MyApp::keyDown(KeyEvent event) {
     }
 
     case KeyEvent::KEY_p: {
-      pause_start_ = std::chrono::steady_clock::now();
-      paused_ = !paused_;
-      if (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - pause_start_).count() != 0) {
+      if (!paused_) {
+        pause_start_ = std::chrono::steady_clock::now();
+      } else if (paused_) {
         pause_end_ = std::chrono::steady_clock::now();
       }
+      total_time_paused_ += std::chrono::duration_cast<std::chrono::microseconds>(pause_end_ - pause_start_).count() / 1000000;
+      paused_ = !paused_;
+      break;
     }
 
     case KeyEvent::KEY_r: {
@@ -251,6 +256,7 @@ void MyApp::ResetGame() {
   engine_.Reset();
   printed_over_ = false;
   top_players_.clear();
+  game_begin_ = std::chrono::steady_clock::now();
 }
 
 }  // namespace myapp
