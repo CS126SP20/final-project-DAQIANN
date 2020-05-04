@@ -4,12 +4,13 @@
 [![docs](https://img.shields.io/badge/docs-yes-brightgreen)](docs/README.md)
 
 **Author**: Daniel Qian - [danielq3@illinois.edu](mailto:danielq3@illinois.edu)
+# Capitalism Simulator
 
-#Game Description
+##Game Description
 
     This is an arcade-like game where one manuevers around a board
     
-###Project Based On
+##Project Based On
     You may have to use CLion on MacOS to build this project.
 
 ##Dependencies
@@ -27,3 +28,7 @@ s | Move down
 d | Move right
 r | Reset game
 q | Quit game
+
+##Outside Sources Used
+
+Free sound effects from [FesliyanStudios](https://www.fesliyanstudios.com)

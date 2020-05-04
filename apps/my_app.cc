@@ -39,7 +39,7 @@ using std::chrono::system_clock;
 using std::string;
 
 const char kDbPath[] = "finalgame.db";
-const char kTheFont[] = "Arial";
+const char kTheFont[] = "Helvetica";
 
 DECLARE_uint32(size);
 DECLARE_uint32(tilesize);
@@ -52,37 +52,54 @@ MyApp::MyApp()
   pace_{FLAGS_pace},
   size_{FLAGS_size},
   tile_size_{FLAGS_tilesize},
+  temp_score_{0},
   printed_over_{false},
   paused_{false},
   player_name_{FLAGS_name}
   { }
 
 void MyApp::setup() {
-  std::cout << "setup";
   cinder::gl::enableDepthWrite();
   cinder::gl::enableDepthRead();
+
+  //Images used in the game
   image_player_ = cinder::gl::Texture2d::create(loadImage(loadAsset("secondsprite.jpg")));
   image_enemy_ = cinder::gl::Texture2d::create(loadImage(loadAsset("bombsprite.png")));
   image_asphalt_ = cinder::gl::Texture2d::create(loadImage(loadAsset("moreasphalt.jpg")));
-  image_board_ = cinder::gl::Texture2d::create(loadImage(loadAsset("BlackBoard.jpg")));
   image_money_ = cinder::gl::Texture2d::create(loadImage(loadAsset("money.png")));
+  image_board_ = cinder::gl::Texture2d::create(loadImage(loadAsset("BlackBoard.jpg")));
+
+  //Counts time during gameplay
   time_begin_ = std::chrono::steady_clock::now();
   game_begin_ = std::chrono::steady_clock::now();
   total_time_paused_ = 0.0;
+
+  //Background music
+  cinder::audio::SourceFileRef sourceFile = cinder::audio::load(
+      cinder::app::loadAsset("BackgroundMus.mp3"));
+  back_music_ = cinder::audio::Voice::create(sourceFile);
+  back_music_ -> start();
+
+  //Music for when collecting a green coin
+  cinder::audio::SourceFileRef sourceFileTwo = cinder::audio::load(
+      cinder::app::loadAsset("CatchCoin.mp3"));
+  coin_music_ = cinder::audio::Voice::create(sourceFileTwo);
 }
 
 void MyApp::update() {
+  //Collects the high scores/times of the leaderboard
   if (engine_.GetPlayer().IsBlocked()) {
     game_end_ = std::chrono::steady_clock::now();
     if (top_players_.empty()) {
       leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore()
-                                     , static_cast<size_t>((std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)- total_time_paused_)});
+                                    , static_cast<size_t>((std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)- total_time_paused_)});
       top_players_ = leaderboard_.RetrieveLongestTimes(3);
       assert(!top_players_.empty());
     }
     return;
   }
 
+  //Doesn't update when paused
   if (paused_) {
     return;
   }
@@ -97,6 +114,12 @@ void MyApp::update() {
       engine_.AddSprite(false);
     }
     time_begin_ = std::chrono::steady_clock::now();
+  }
+
+  //Plays sound when collects green sprite with money symbol
+  if (engine_.GetScore() - temp_score_ != 0) {
+    coin_music_ -> start();
+    temp_score_ = engine_.GetScore();
   }
 
   //Updates the state of player
@@ -119,9 +142,11 @@ void MyApp::draw() {
     DrawGameOver();
     return;
   }
+
   if (paused_) {
     return;
   }
+
   DrawBackground();
   DrawPlayer();
   DrawSprites();
@@ -204,6 +229,12 @@ void MyApp::DrawGameOver() {
     Print(ss_new.str(), color_red, size, {center.x, center.y + (++row) * 50});
   }
 
+  if (!printed_over_) {
+    cinder::audio::SourceFileRef sourceFile = cinder::audio::load(
+        cinder::app::loadAsset("BreakMetal.mp3"));
+    game_end_music_ = cinder::audio::Voice::create(sourceFile);
+    game_end_music_ -> start();
+  }
   printed_over_ = true;
 }
 
@@ -257,6 +288,9 @@ void MyApp::ResetGame() {
   printed_over_ = false;
   top_players_.clear();
   game_begin_ = std::chrono::steady_clock::now();
+  time_begin_ = std::chrono::steady_clock::now();
+  total_time_paused_ = 0.0;
+  temp_score_ = 0;
 }
 
 }  // namespace myapp

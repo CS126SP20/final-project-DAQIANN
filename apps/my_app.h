@@ -41,6 +41,7 @@ class MyApp : public cinder::app::App {
   const size_t pace_;
   const size_t size_;
   const size_t tile_size_;
+  size_t temp_score_;
   bool printed_over_;
   bool paused_;
   std::vector<mylibrary::Player> top_players_;
@@ -57,6 +58,9 @@ class MyApp : public cinder::app::App {
   std::chrono::steady_clock::time_point pause_start_;
   std::chrono::steady_clock::time_point pause_end_;
   float total_time_paused_;
+  cinder::audio::VoiceRef back_music_;
+  cinder::audio::VoiceRef coin_music_;
+  cinder::audio::VoiceRef game_end_music_;
 };
 
 }  // namespace myapp

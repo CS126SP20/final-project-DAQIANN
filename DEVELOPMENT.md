@@ -71,3 +71,4 @@
    * Added pausing into the game
    * Fixed the pausing to not reset the game
    * Made it so that paused time would be subtracted from the game time
+   * Added background sound, coin sound, lose sound

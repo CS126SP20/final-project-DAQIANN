@@ -7,6 +7,7 @@
 #include <mylibrary/sprite.h>
 #include <mylibrary/sprite_location.h>
 #include <mylibrary/player_sprite.h>
+#include <mylibrary/player.h>
 
 #include <catch2/catch.hpp>
 
@@ -42,12 +43,13 @@ TEST_CASE("Player test") {
   }
 }
 
-//TEST_CASE("Location test") {
-//  mylibrary::SpriteLocation
-//}
-//
+TEST_CASE("Sprite location operators test") {
+  mylibrary::SpriteLocation location_one(1, 2);
+  mylibrary::SpriteLocation location_two(2, 3);
+  REQUIRE(!(location_one == location_two));
+}
 //TEST_CASE("Test adding sprite") {
-//  mylibrary::GameEngine engine_test{16,16};
+//  mylibrary::GameEngine engine_test({16,16});
 //  engine_test.AddSprite(false);
 //  REQUIRE(engine_test.GetSpriteCount() == 1);
 //}

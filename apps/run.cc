@@ -19,7 +19,7 @@ namespace myapp {
 
 DEFINE_uint32(size, 16, "number of tiles in row and column");
 DEFINE_uint32(tilesize, 50, "size of each tile");
-DEFINE_uint32(pace, 40, "speed of game");
+DEFINE_uint32(pace, 60, "speed of game");
 DEFINE_string(name, "Guest", "name of player");
 
 
@@ -45,7 +45,7 @@ void SetUp(App::Settings* settings) {
   const int width = static_cast<int>(FLAGS_size * FLAGS_tilesize);
   const int height = static_cast<int>(FLAGS_size * FLAGS_tilesize);
   settings->setWindowSize(width, height);
-  settings->setTitle("CS126FinalGame");
+  settings->setTitle("CapitalismSimulator");
 
   std::srand(std::time(0));
 }
