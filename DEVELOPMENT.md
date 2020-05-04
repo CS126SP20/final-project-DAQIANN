@@ -5,8 +5,8 @@ Development
    * Started creation of leaderboard and player for leaderboard usage
    
 - **4/20/2020**
-   * Wrote header and cpp file for the location of sprites
-   * Wrote the Rule of Five for sprites, but want to add extra functionalities later
+   * Wrote files for the location of sprites
+   * Wrote the Rule of Five for sprites
    * Added a time variable to player where I want it to count seconds passed during game
 
 - **4/21/2020**

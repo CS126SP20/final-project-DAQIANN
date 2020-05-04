@@ -47,19 +47,26 @@ TEST_CASE("Sprite location operators test") {
   mylibrary::SpriteLocation location_one(1, 2);
   mylibrary::SpriteLocation location_two(2, 3);
   mylibrary::SpriteLocation location_three(1, 2);
+  mylibrary::SpriteLocation location_four(1, 1);
 
   SECTION("Equality") {
     REQUIRE(location_one == location_three);
     REQUIRE(location_one != location_two);
     REQUIRE(location_one < location_two);
+    REQUIRE(location_one <= location_two);
+    REQUIRE(location_two > location_one);
+    REQUIRE(location_two >= location_one);
   }
 
-  SECTION("Adding") {
+  SECTION("Adding and subtracting") {
+    REQUIRE((location_one + location_four) == location_two);
+    REQUIRE((location_two - location_four) == location_one);
+    location_one += location_four;
+    REQUIRE(location_one == location_two);
+  }
 
+  SECTION("Mod") {
+    mylibrary::SpriteLocation loc_zero(0,0);
+    REQUIRE((location_one % location_four) == loc_zero);
   }
 }
-//TEST_CASE("Test adding sprite") {
-//  mylibrary::GameEngine engine_test({16,16});
-//  engine_test.AddSprite(false);
-//  REQUIRE(engine_test.GetSpriteCount() == 1);
-//}
