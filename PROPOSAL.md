@@ -21,20 +21,20 @@ a game of some sort.
 
 ###Timeline on Project
 Week One:
-- [ ] Create a class for the objects to be used class involved in the game.
-- [ ] Work out a general outline for how I want the player to interact with the game.
-- [ ] Complete key-binding for movements and actions
+- [X] Create a class for the objects to be used class involved in the game.
+- [X] Work out a general outline for how I want the player to interact with the game.
+- [X] Complete key-binding for movements and actions
 
 Week Two: 
-- [ ] Complete the main running system for the project
-- [ ] Work out a scoring system
-- [ ] Create a database for the scores
+- [X] Complete the main running system for the project
+- [X] Work out a scoring system
+- [X] Create a database for the scores
 
 Week Three:
-- [ ] Make it kind of aesthetically pleasing
-- [ ] Add sounds
-- [ ] Figure out how naming will work
-- [ ] Tie it all together
+- [X] Make it kind of aesthetically pleasing
+- [X] Add sounds
+- [X] Figure out how naming will work
+- [X] Tie it all together
 
 ###Stretch Goals
 I may want to add a second entity for the user to control. Making different speed settings, themes to the game, and
