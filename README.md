@@ -54,3 +54,6 @@ Separate several flags with a space but not when setting the values
 ## Outside Sources Used
 
 Free sound effects from [FesliyanStudios](https://www.fesliyanstudios.com)
+
+## License
+My final project code is under the MIT license.
