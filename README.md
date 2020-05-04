@@ -18,7 +18,7 @@ hitting the bombs. Scores are based off of how many "coins" you collect and also
 You may have to use CLion on MacOS to build this project. It's possible that you may need to have CMake in order
 for it to work.
 
-Get CLion from [JetBrains](https://www.jetbrains.com/clion/).
+Install CLion from [JetBrains](https://www.jetbrains.com/clion/).
 
 ## Documentation
 DEVELOPMENT.md includes my development log throughout the project and PROPOSAL.md includes the plans from before
@@ -44,10 +44,10 @@ q | Quit game
 
 ## Using gflags
 Through the edit configurations the flags that can be inputted into Program Arguments:
-- **--pace = (Any integer value to change the speed of player)**
-- **--name = "(A string that you want to be your name in the leaderboard)"**
-- **--size = (Any integer value to change the size of the board)**
-- **--tilesize = (Any integer value to change the size of the tiles)**
+- **--pace** = (Any integer value to change the speed of player)
+- **--name** = "(A string that you want to be your name in the leaderboard)"
+- **--size** = (Any integer value to change the size of the board)
+- **--tilesize** = (Any integer value to change the size of the tiles)
 
 Separate several flags with a space but not when setting the values
 
