@@ -1,4 +1,5 @@
 # Final Project
+![Game Screen](/Users/daqian/Downloads/game.png)
 
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![docs](https://img.shields.io/badge/docs-yes-brightgreen)](docs/README.md)
@@ -8,18 +9,20 @@
 
 ## Game Description
 
-    This is a game where the player manuevers around a board where the character collects "money" and avoids
-    hitting the bombs.
+This is a game where the player manuevers around a board where the character collects "money" and avoid 
+hitting the bombs. Scores are based off of how many "coins" you collect and also tracks how long you have played.
     
 ## Getting Started 
 
 ### Project Based On
-    You may have to use CLion on MacOS to build this project.
-    It's possible that you may need to have CMake in order for it to work.
-    
+You may have to use CLion on MacOS to build this project. It's possible that you may need to have CMake in order
+for it to work.
+
+Get CLion from [JetBrains](https://www.jetbrains.com/clion/).
+
 ## Documentation
-    DEVELOPMENT.md includes my development log throughout the project and PROPOSAL.md
-    includes the plans from before the project.
+DEVELOPMENT.md includes my development log throughout the project and PROPOSAL.md includes the plans from before
+the project.
 
 ## Dependencies
 * [cmake](https://cmake.org/)
