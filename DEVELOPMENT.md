@@ -73,4 +73,5 @@ Development
    * Added background sound, coin sound, lose sound
    
 - **5/4/2020**
-   * Included more test cases
+   * Included more test cases for sprite location
+   * Updated README file
