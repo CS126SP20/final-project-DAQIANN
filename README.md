@@ -1,5 +1,5 @@
 # Final Project
-![Game Screen](/Users/daqian/Downloads/game.jpg)
+![Game Screen](assets/game.jpg)
 
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![docs](https://img.shields.io/badge/docs-yes-brightgreen)](docs/README.md)
