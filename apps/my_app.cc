@@ -235,8 +235,8 @@ void MyApp::keyDown(KeyEvent event) {
         pause_start_ = std::chrono::steady_clock::now();
       } else if (paused_) {
         pause_end_ = std::chrono::steady_clock::now();
+        total_time_paused_ += std::chrono::duration_cast<std::chrono::microseconds>(pause_end_ - pause_start_).count() / 1000000;
       }
-      total_time_paused_ += std::chrono::duration_cast<std::chrono::microseconds>(pause_end_ - pause_start_).count() / 1000000;
       paused_ = !paused_;
       break;
     }
