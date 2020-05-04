@@ -6,29 +6,29 @@
 **Author**: Daniel Qian - [danielq3@illinois.edu](mailto:danielq3@illinois.edu)
 # Capitalism Simulator
 
-##Game Description
+## Game Description
 
     This is a game where the player manuevers around a board where the character collects "money" and avoids
     hitting the bombs.
     
-##Getting Started 
+## Getting Started 
 
-###Project Based On
+### Project Based On
     You may have to use CLion on MacOS to build this project.
     It's possible that you may need to have CMake in order for it to work.
     
-##Documentation
+## Documentation
     DEVELOPMENT.md includes my development log throughout the project and PROPOSAL.md
     includes the plans from before the project.
 
-##Dependencies
+## Dependencies
 * [cmake](https://cmake.org/)
 * [gflags](https://github.com/gflags/gflags)
 * [SqliteModernCpp + SQLite](https://github.com/SqliteModernCpp/sqlite_modern_cpp/tree/dev)
 
-##Controls
+## Controls
 
-###Keyboard
+### Keyboard
 
 Key | Action
 --- | ------
@@ -39,7 +39,7 @@ d | Move right
 r | Reset game
 q | Quit game
 
-##Using gflags
+## Using gflags
 Through the edit configurations the flags that can be inputted into Program Arguments:
 - **--pace = (Any integer value to change the speed of player)**
 - **--name = "(A string that you want to be your name in the leaderboard)"**
@@ -48,6 +48,6 @@ Through the edit configurations the flags that can be inputted into Program Argu
 
 Separate several flags with a space but not when setting the values
 
-##Outside Sources Used
+## Outside Sources Used
 
 Free sound effects from [FesliyanStudios](https://www.fesliyanstudios.com)
