@@ -39,7 +39,7 @@ using std::chrono::system_clock;
 using std::string;
 
 const char kDbPath[] = "finalgame.db";
-const char kTheFont[] = "Helvetica";
+const char kTheFont[] = "Arial";
 
 DECLARE_uint32(size);
 DECLARE_uint32(tilesize);
@@ -91,6 +91,10 @@ void MyApp::update() {
   if (engine_.GetPlayer().IsBlocked()) {
     game_end_ = std::chrono::steady_clock::now();
     if (top_players_.empty()) {
+      cinder::audio::SourceFileRef sourceFile = cinder::audio::load(
+          cinder::app::loadAsset("BreakMetal.mp3"));
+      game_end_music_ = cinder::audio::Voice::create(sourceFile);
+      game_end_music_ -> start();
       leaderboard_.AddToLeaderBoard({player_name_,engine_.GetScore()
                                     , static_cast<size_t>((std::chrono::duration_cast<std::chrono::microseconds>(game_end_ - game_begin_).count() / 1000000)- total_time_paused_)});
       top_players_ = leaderboard_.RetrieveLongestTimes(3);
@@ -229,12 +233,6 @@ void MyApp::DrawGameOver() {
     Print(ss_new.str(), color_red, size, {center.x, center.y + (++row) * 50});
   }
 
-  if (!printed_over_) {
-    cinder::audio::SourceFileRef sourceFile = cinder::audio::load(
-        cinder::app::loadAsset("BreakMetal.mp3"));
-    game_end_music_ = cinder::audio::Voice::create(sourceFile);
-    game_end_music_ -> start();
-  }
   printed_over_ = true;
 }
 
