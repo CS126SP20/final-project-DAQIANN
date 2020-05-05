@@ -12,7 +12,7 @@
 #include "sprite.h"
 #include "player_sprite.h"
 
-namespace mylibrary {
+namespace capitalism {
 
 class GameEngine {
  public:

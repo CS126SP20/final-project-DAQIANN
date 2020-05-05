@@ -1,7 +1,7 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
 #include "my_app.h"
-#include <mylibrary/sprite_location.h>
+#include <capitalism/sprite_location.h>
 #include <cinder/app/App.h>
 #include <cinder/Font.h>
 #include <cinder/Text.h>
@@ -11,8 +11,8 @@
 #include <cinder/audio/audio.h>
 #include "cinder/ImageIo.h"
 #include "cinder/gl/Texture.h"
-#include <mylibrary/player.h>
-#include <mylibrary/direction.h>
+#include <capitalism/player.h>
+#include <capitalism/direction.h>
 #include <gflags/gflags.h>
 
 #include <algorithm>
@@ -28,9 +28,9 @@ using cinder::Color;
 using cinder::ColorA;
 using cinder::Rectf;
 using cinder::TextBox;
-using mylibrary::SpriteLocation;
-using mylibrary::Direction;
-using mylibrary::Sprite;
+using capitalism::SpriteLocation;
+using capitalism::Direction;
+using capitalism::Sprite;
 using cinder::TextBox;
 using cinder::app::KeyEvent;
 using std::chrono::duration_cast;
@@ -232,7 +232,7 @@ void MyApp::DrawGameOver() {
   std::stringstream ss;
   ss << "High Values: ";
   Print(ss.str(), color_red, size, {center.x, center.y + (++row) * 50});
-  for (const mylibrary::Player& player : top_players_) {
+  for (const capitalism::Player& player : top_players_) {
     std::stringstream ss_new;
     ss_new << player.name << " - " << player.score << " - " << player.time << " seconds";
     Print(ss_new.str(), color_red, size, {center.x, center.y + (++row) * 50});

@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-namespace mylibrary {
+namespace capitalism {
  class LeaderBoard {
   public:
    explicit LeaderBoard(const std::string& db_path);

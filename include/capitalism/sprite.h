@@ -5,9 +5,9 @@
 #ifndef FINALPROJECT_SPRITE_H
 #define FINALPROJECT_SPRITE_H
 
-#include <mylibrary/sprite_location.h>
+#include <capitalism/sprite_location.h>
 
-namespace mylibrary {
+namespace capitalism {
 class Sprite {
  public:
   explicit Sprite(const SpriteLocation&);

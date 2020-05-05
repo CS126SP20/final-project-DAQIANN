@@ -7,10 +7,10 @@
 #include <set>
 #include <stdexcept>
 
-#include <mylibrary/direction.h>
-#include <mylibrary/game_engine.h>
+#include <capitalism/direction.h>
+#include <capitalism/game_engine.h>
 
-namespace mylibrary {
+namespace capitalism {
 SpriteLocation FromDirection(const Direction direction) {
   switch (direction) {
     case Direction::kUp:
@@ -121,7 +121,7 @@ size_t GameEngine::GetScore() {
   return score_;
 }
 
-void GameEngine::SetDirection(const mylibrary::Direction direction) {
+void GameEngine::SetDirection(const capitalism::Direction direction) {
   direction_ = direction;
 }
 

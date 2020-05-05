@@ -2,9 +2,9 @@
 // Created by Daniel Qian on 4/20/20.
 //
 
-#include <mylibrary/sprite.h>
+#include <capitalism/sprite.h>
 
-namespace mylibrary {
+namespace capitalism {
 
 Sprite::Sprite(const SpriteLocation& sprite_location) : sprite_location_(sprite_location) {}
 
@@ -17,9 +17,9 @@ bool Sprite::IsCollectable() {
 }
 
 Sprite::Sprite(const Sprite& sprite) = default;
-Sprite::Sprite(mylibrary::Sprite&& sprite) noexcept = default;
+Sprite::Sprite(capitalism::Sprite&& sprite) noexcept = default;
 Sprite& Sprite::operator=(const Sprite& sprite) = default;
-Sprite& Sprite::operator=(mylibrary::Sprite&& sprite) noexcept = default;
+Sprite& Sprite::operator=(capitalism::Sprite&& sprite) noexcept = default;
 Sprite::~Sprite() = default;
 
 }

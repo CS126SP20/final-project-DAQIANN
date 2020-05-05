@@ -5,7 +5,7 @@
 #ifndef FINALPROJECT_DIRECTION_H
 #define FINALPROJECT_DIRECTION_H
 
-namespace mylibrary {
+namespace capitalism {
 
 enum class Direction { kUp, kDown, kLeft, kRight };
 

@@ -8,7 +8,7 @@
 #include <cstddef>
 #include <iostream>
 
-namespace mylibrary {
+namespace capitalism {
 class SpriteLocation {
  public:
   SpriteLocation(int row, int col);

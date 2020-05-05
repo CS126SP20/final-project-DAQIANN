@@ -6,7 +6,7 @@
 #define FINALPROJECT_PLAYER_H
 #include <string>
 
-namespace mylibrary {
+namespace capitalism {
 struct Player {
   Player(const std::string& name, size_t score, size_t time) : name(name), score(score), time(time) {}
   std::string name;

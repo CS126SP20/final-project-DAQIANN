@@ -1,9 +1,9 @@
 //
 // Created by Daniel Qian on 4/20/20.
 //
-#include <mylibrary/sprite_location.h>
+#include <capitalism/sprite_location.h>
 
-namespace mylibrary {
+namespace capitalism {
 
 SpriteLocation::SpriteLocation(int row, int col) : row_(row), col_(col) {}
 
@@ -74,4 +74,4 @@ std::ostream& operator<<(std::ostream& os, const SpriteLocation& sprite_location
   return os;
 }
 
-} // namespace mylibrary
+} // namespace capitalism

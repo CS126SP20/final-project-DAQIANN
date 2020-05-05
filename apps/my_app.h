@@ -9,9 +9,9 @@
 #include <cinder/audio/audio.h>
 #include "cinder/ImageIo.h"
 #include "cinder/gl/Texture.h"
-#include <mylibrary/leaderboard.h>
-#include <mylibrary/player.h>
-#include <mylibrary/game_engine.h>
+#include <capitalism/leaderboard.h>
+#include <capitalism/player.h>
+#include <capitalism/game_engine.h>
 
 #include <random>
 #include <string>
@@ -35,16 +35,16 @@ class MyApp : public cinder::app::App {
   void ResetGame();
 
  private:
-  mylibrary::GameEngine engine_;
+  capitalism::GameEngine engine_;
   std::chrono::time_point<std::chrono::system_clock> last_time_;
-  mylibrary::LeaderBoard leaderboard_;
+  capitalism::LeaderBoard leaderboard_;
   const size_t pace_;
   const size_t size_;
   const size_t tile_size_;
   size_t temp_score_;
   bool printed_over_;
   bool paused_;
-  std::vector<mylibrary::Player> top_players_;
+  std::vector<capitalism::Player> top_players_;
   const std::string player_name_;
   cinder::gl::Texture2dRef image_player_;
   cinder::gl::Texture2dRef image_enemy_;

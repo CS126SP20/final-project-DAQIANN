@@ -25,7 +25,7 @@ ci_make_library(
 
 target_include_directories(mylibrary PUBLIC ../include)
 
-#target_link_libraries(mylibrary PRIVATE sqlite-modern-cpp sqlite3)
+#target_link_libraries(capitalism PRIVATE sqlite-modern-cpp sqlite3)
 
 # All users of this library will need at least C++14
 

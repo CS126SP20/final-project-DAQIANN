@@ -7,7 +7,7 @@
 
 #include "sprite_location.h"
 
-namespace mylibrary {
+namespace capitalism {
 class PlayerSprite {
  public:
   PlayerSprite();

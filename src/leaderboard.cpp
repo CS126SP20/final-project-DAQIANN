@@ -1,11 +1,11 @@
-#include <mylibrary/leaderboard.h>
-#include <mylibrary/player.h>
+#include <capitalism/leaderboard.h>
+#include <capitalism/player.h>
 #include <sqlite_modern_cpp.h>
 
 #include <string>
 #include <vector>
 
-namespace mylibrary {
+namespace capitalism {
 using std::string;
 using std::vector;
 
