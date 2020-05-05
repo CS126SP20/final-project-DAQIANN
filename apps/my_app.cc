@@ -103,6 +103,11 @@ void MyApp::update() {
     return;
   }
 
+  //If background music stops have it start again
+  if (!(back_music_ -> isPlaying())) {
+    back_music_ -> start();
+  }
+
   //Doesn't update when paused
   if (paused_) {
     return;

@@ -20,14 +20,14 @@ for it to work.
 
 Install CLion from [JetBrains](https://www.jetbrains.com/clion/).
 
-## Documentation
-`DEVELOPMENT.md` includes my development log throughout the project and `PROPOSAL.md` includes the plans from before
-the project.
-
 ## Dependencies
 * [cmake](https://cmake.org/)
 * [gflags](https://github.com/gflags/gflags)
 * [SqliteModernCpp + SQLite](https://github.com/SqliteModernCpp/sqlite_modern_cpp/tree/dev)
+
+## Documentation
+`DEVELOPMENT.md` includes my development log throughout the project and `PROPOSAL.md` includes the plans from before
+the project.
 
 ## Controls
 
