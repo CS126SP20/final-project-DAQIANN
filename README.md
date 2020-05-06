@@ -23,7 +23,7 @@ Install CLion from [JetBrains](https://www.jetbrains.com/clion/).
 ## Dependencies
 * [cmake](https://cmake.org/)
 * [gflags](https://github.com/gflags/gflags)
-* [SqliteModernCpp + SQLite](https://github.com/SqliteModernCpp/sqlite_modern_cpp/tree/dev)
+* [SqliteModernCpp + SQLite3](https://github.com/SqliteModernCpp/sqlite_modern_cpp/tree/dev)
 * [Cinder](https://libcinder.org/)
 
 ## Documentation
