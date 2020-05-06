@@ -78,3 +78,7 @@ Development
    
 - **5/5/2020**
    * Changed namespace name from mylibrary to capitalism to fit the theme
+   
+- **5/6/2020**
+   * Went through and fixed syntax/added some comments
+   * Added images to README file
