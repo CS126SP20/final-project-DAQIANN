@@ -9,14 +9,14 @@
 #include <set>
 
 #include "direction.h"
-#include "sprite.h"
 #include "player_sprite.h"
+#include "sprite.h"
 
 namespace capitalism {
 
 class GameEngine {
  public:
-  //new game of size width * height
+  // new game of size width * height
   GameEngine(size_t width, size_t height);
   GameEngine(size_t width, size_t height, unsigned seed);
 
@@ -45,9 +45,8 @@ class GameEngine {
   Direction direction_;
   std::mt19937 rng_;
   std::uniform_real_distribution<double> uniform_;
-
 };
 
-}
+}  // namespace capitalism
 
 #endif  // FINALPROJECT_GAME_ENGINE_H

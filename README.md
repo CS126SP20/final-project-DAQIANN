@@ -9,7 +9,7 @@
 
 ## Game Description
 
-This is a game where the player manuevers around a board where the character collects "money" and avoid 
+This is a game where the player maneuvers around a board where the character collects "money" and avoid 
 hitting the bombs. Scores are based off of how many "coins" you collect and also tracks how long you have played.
     
 ## Getting Started 
@@ -24,6 +24,7 @@ Install CLion from [JetBrains](https://www.jetbrains.com/clion/).
 * [cmake](https://cmake.org/)
 * [gflags](https://github.com/gflags/gflags)
 * [SqliteModernCpp + SQLite](https://github.com/SqliteModernCpp/sqlite_modern_cpp/tree/dev)
+* [Cinder](https://libcinder.org/)
 
 ## Documentation
 `DEVELOPMENT.md` includes my development log throughout the project and `PROPOSAL.md` includes the plans from before

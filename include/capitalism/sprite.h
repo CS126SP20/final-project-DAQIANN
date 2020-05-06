@@ -27,6 +27,6 @@ class Sprite {
   bool collectable_;
 };
 
-}
+}  // namespace capitalism
 
 #endif  // FINALPROJECT_SPRITE_H

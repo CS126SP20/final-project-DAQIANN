@@ -43,9 +43,7 @@ SpriteLocation SpriteLocation::operator-(const SpriteLocation& rhs) const {
   return *this + (-rhs);
 }
 
-SpriteLocation SpriteLocation::operator-() const {
-  return {-row_, -col_};
-}
+SpriteLocation SpriteLocation::operator-() const { return {-row_, -col_}; }
 
 SpriteLocation& SpriteLocation::operator+=(const SpriteLocation& rhs) {
   *this = *this + rhs;
@@ -61,17 +59,14 @@ SpriteLocation SpriteLocation::operator%(const SpriteLocation& rhs) const {
   return {mod(row_, rhs.row_), mod(col_, rhs.col_)};
 }
 
-int SpriteLocation::Row() const {
-  return row_;
-}
+int SpriteLocation::Row() const { return row_; }
 
-int SpriteLocation::Col() const {
-  return col_;
-}
+int SpriteLocation::Col() const { return col_; }
 
 std::ostream& operator<<(std::ostream& os, const SpriteLocation& sprite_location) {
-  os << "{row=" << sprite_location.Row() << ", col=" << sprite_location.Col() << "}";
+  os << "{row=" << sprite_location.Row() << ", col=" << sprite_location.Col()
+     << "}";
   return os;
 }
 
-} // namespace capitalism
+}  // namespace capitalism

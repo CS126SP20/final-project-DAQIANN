@@ -22,6 +22,6 @@ class PlayerSprite {
   SpriteLocation player_location_;
   bool is_blocked_;
 };
-}
+}  // namespace capitalism
 
 #endif  // FINALPROJECT_PLAYER_SPRITE_H

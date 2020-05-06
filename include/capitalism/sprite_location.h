@@ -33,11 +33,10 @@ class SpriteLocation {
  private:
   int row_;
   int col_;
-
 };
 
 std::ostream& operator<<(std::ostream& os, const SpriteLocation& sprite_location);
 
-}
+}  // namespace capitalism
 
 #endif  // FINALPROJECT_SPRITE_LOCATION_H

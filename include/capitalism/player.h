@@ -8,11 +8,12 @@
 
 namespace capitalism {
 struct Player {
-  Player(const std::string& name, size_t score, size_t time) : name(name), score(score), time(time) {}
+  Player(const std::string& name, size_t score, size_t time)
+      : name(name), score(score), time(time) {}
   std::string name;
   size_t score;
   size_t time;
 };
-}
+}  // namespace capitalism
 
 #endif  // FINALPROJECT_PLAYER_H

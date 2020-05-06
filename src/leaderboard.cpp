@@ -18,12 +18,13 @@ LeaderBoard::LeaderBoard(const string& db_path) : db_{db_path} {
 }
 
 void LeaderBoard::AddToLeaderBoard(const Player& player) {
-  db_ << u"insert into leaderboard (name, score, time) values (?, ?, ?);" << player.name
+  db_ << u"insert into leaderboard (name, score, time) values (?, ?, ?);"
+      << player.name
       << player.score
       << player.time;
 }
 
-vector<Player> LeaderBoard::GetPlayers(sqlite::database_binder *rows) {
+vector<Player> LeaderBoard::GetPlayers(sqlite::database_binder* rows) {
   vector<Player> players;
 
   for (auto&& row : *rows) {
@@ -39,15 +40,17 @@ vector<Player> LeaderBoard::GetPlayers(sqlite::database_binder *rows) {
 }
 
 vector<Player> LeaderBoard::RetrieveHighScores(const size_t limit) {
-  auto rows = db_ << "select name, score, time from leaderboard order by score desc limit ? ;"
-      << limit;
-  return GetPlayers(&rows);
-}
-
-vector<Player> LeaderBoard::RetrieveLongestTimes(const size_t limit) {
-  auto rows = db_ << "select name, score, time from leaderboard order by time desc limit ? ;"
+  auto rows = db_ << "select name, score, time from leaderboard order by score "
+                     "desc limit ? ;"
                   << limit;
   return GetPlayers(&rows);
 }
 
+vector<Player> LeaderBoard::RetrieveLongestTimes(const size_t limit) {
+  auto rows = db_ << "select name, score, time from leaderboard order by time "
+                     "desc limit ? ;"
+                  << limit;
+  return GetPlayers(&rows);
 }
+
+}  // namespace capitalism

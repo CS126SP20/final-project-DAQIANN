@@ -3,19 +3,19 @@
 #ifndef FINALPROJECT_APPS_MYAPP_H_
 #define FINALPROJECT_APPS_MYAPP_H_
 
-#include <cinder/app/App.h>
-#include <cinder/app/App.h>
-#include <cinder/gl/gl.h>
-#include <cinder/audio/audio.h>
-#include "cinder/ImageIo.h"
-#include "cinder/gl/Texture.h"
+#include <capitalism/game_engine.h>
 #include <capitalism/leaderboard.h>
 #include <capitalism/player.h>
-#include <capitalism/game_engine.h>
+#include <cinder/app/App.h>
+#include <cinder/audio/audio.h>
+#include <cinder/gl/gl.h>
 
 #include <random>
 #include <string>
 #include <vector>
+
+#include "cinder/ImageIo.h"
+#include "cinder/gl/Texture.h"
 
 namespace myapp {
 

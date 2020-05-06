@@ -75,3 +75,6 @@ Development
 - **5/4/2020**
    * Included more test cases for sprite location
    * Updated README file
+   
+- **5/5/2020**
+   * Changed namespace name from mylibrary to capitalism to fit the theme

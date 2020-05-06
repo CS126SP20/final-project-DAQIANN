@@ -1,26 +1,26 @@
 //
 // Created by Daniel Qian on 4/23/20.
 //
+#include <capitalism/direction.h>
+#include <capitalism/game_engine.h>
+
 #include <algorithm>
 #include <cstdlib>
 #include <random>
 #include <set>
 #include <stdexcept>
 
-#include <capitalism/direction.h>
-#include <capitalism/game_engine.h>
-
 namespace capitalism {
 SpriteLocation FromDirection(const Direction direction) {
   switch (direction) {
     case Direction::kUp:
-      return {0,-1};
+      return {0, -1};
     case Direction::kDown:
-      return {0,1};
+      return {0, 1};
     case Direction::kLeft:
-      return {-1,0};
+      return {-1, 0};
     case Direction::kRight:
-      return {1,0};
+      return {1, 0};
   }
 }
 
@@ -30,7 +30,7 @@ std::vector<Sprite> GameEngine::GetSpritesList() const { return sprite_list_; }
 
 PlayerSprite GameEngine::GetPlayer() const { return player_; }
 
-//Creates new Sprite and adds it to the list
+// Creates new Sprite and adds it to the list
 void GameEngine::AddSprite(bool collect) {
   Sprite new_sprite = Sprite(GetRandomLocation());
   new_sprite.SetCollectable(collect);
@@ -38,11 +38,9 @@ void GameEngine::AddSprite(bool collect) {
   sprite_count_++;
 }
 
-size_t GameEngine::GetSpriteCount() {
-  return sprite_count_;
-}
+size_t GameEngine::GetSpriteCount() { return sprite_count_; }
 
-//Resets everything in the engine
+// Resets everything in the engine
 void GameEngine::Reset() {
   player_.SetLocation(GetRandomLocation());
   sprite_list_.clear();
@@ -50,7 +48,8 @@ void GameEngine::Reset() {
   score_ = 0;
 }
 
-GameEngine::GameEngine(size_t width, size_t height) : GameEngine{width, height, static_cast<unsigned>(std::rand())} {}
+GameEngine::GameEngine(size_t width, size_t height)
+    : GameEngine{width, height, static_cast<unsigned>(std::rand())} {}
 
 GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
     : width_{width},
@@ -60,33 +59,35 @@ GameEngine::GameEngine(size_t width, size_t height, unsigned seed)
       sprite_count_{0},
       direction_{Direction::kRight},
       rng_{seed},
-      uniform_{0,1} {
+      uniform_{0, 1} {
   Reset();
 }
 
-//Decides what to do when player makes a move
+// Decides what to do when player makes a move
 void GameEngine::Step() {
-  //direction_ = last_direction_;
+  // direction_ = last_direction_;
   SpriteLocation old_loc = FromDirection(direction_);
-  SpriteLocation new_loc = (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
+  SpriteLocation new_loc =
+      (player_.GetLocation() + old_loc) % SpriteLocation(height_, width_);
   const std::set<SpriteLocation> old_occ_tiles = GetOccupiedTiles();
   player_.SetLocation(new_loc);
 
-  //Add did it collide with collectable or non-collectable
+  // Add did it collide with collectable or non-collectable
   const std::set<SpriteLocation> new_occ_tiles = GetOccupiedTiles();
   for (int index = 0; index < sprite_list_.size(); index++) {
-    if (sprite_list_.at(index).GetLocation() == player_.GetLocation() && sprite_list_.at(index).IsCollectable()) {
+    if (sprite_list_.at(index).GetLocation() == player_.GetLocation() &&
+        sprite_list_.at(index).IsCollectable()) {
       score_++;
       std::cout << score_;
       sprite_list_.erase(sprite_list_.begin() + index);
-    } else if (sprite_list_.at(index).GetLocation() == player_.GetLocation() && !sprite_list_.at(index).IsCollectable()) {
+    } else if (sprite_list_.at(index).GetLocation() == player_.GetLocation() &&
+               !sprite_list_.at(index).IsCollectable()) {
       player_.SetBlocked(true);
     }
   }
-
 }
 
-//Returns the tiles that are occupied by sprites
+// Returns the tiles that are occupied by sprites
 std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
   std::set<SpriteLocation> occupied_tiles;
   for (const Sprite current : sprite_list_) {
@@ -99,7 +100,7 @@ std::set<SpriteLocation> GameEngine::GetOccupiedTiles() {
 SpriteLocation GameEngine::GetRandomLocation() {
   std::set<SpriteLocation> occupied_tiles = GetOccupiedTiles();
   int open_space = 0;
-  SpriteLocation final_location(0,0);
+  SpriteLocation final_location(0, 0);
 
   for (size_t row = 0; row < height_; ++row) {
     for (size_t col = 0; col < width_; ++col) {
@@ -108,7 +109,7 @@ SpriteLocation GameEngine::GetRandomLocation() {
         continue;
       }
 
-      if (uniform_(rng_) <= 1./(++open_space)) {
+      if (uniform_(rng_) <= 1. / (++open_space)) {
         final_location = loc;
       }
     }
@@ -117,12 +118,10 @@ SpriteLocation GameEngine::GetRandomLocation() {
   return final_location;
 }
 
-size_t GameEngine::GetScore() {
-  return score_;
-}
+size_t GameEngine::GetScore() { return score_; }
 
 void GameEngine::SetDirection(const capitalism::Direction direction) {
   direction_ = direction;
 }
 
-}
+}  // namespace capitalism
