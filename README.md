@@ -50,7 +50,11 @@ Through the edit configurations the flags that can be inputted into Program Argu
 - `--size=` (Any integer value to change the size of the board)
 - `--tilesize=` (Any integer value to change the size of the tiles)
 
+![](assets/EditConfig.jpg)
+
 Separate several flags with a space but not when setting the values
+
+![](assets/ProgramArg.jpg)
 
 ## Outside Sources Used
 
